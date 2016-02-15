@@ -1,11 +1,16 @@
 # javascriptstyleguide
-Пишим JavaScript (es6) красиво.
+Пишим JavaScript (ES6) красиво.
 
-За основу взята статья ["Airbnb javascript style guide"](https://github.com/airbnb/javascript). Убранно то что я считаю лишним, нужные моменты переосмысленны и переведенны, добавленны некоторые мои видения.
+За основу взята статья ["Airbnb - JavaScript style guide"](https://github.com/airbnb/javascript). Убранно то что я считаю лишним, нужные моменты переосмысленны и переведенны, добавленны некоторые мои видения.
 
+## Оглавление
+
+  1. [Переменные](#переменные:-var,-const-и-let)
+  1. 
+  
 ## Переменные: var, const и let
 
-- [1.1](#1.1) <a name='1.1'></a> В es6 не принято использовать `var`. Используйте `const` если не хотите чтобы ссылка переменная-значение менялась. Во всех остальных случаях используйте `let`.
+- [1.1](#1.1) <a name='1.1'></a> В ES6 не принято использовать `var`. Используйте `const` если не хотите чтобы ссылка переменная-значение менялась. Во всех остальных случаях используйте `let`.
 
     eslint: [`prefer-const`](http://eslint.org/docs/rules/prefer-const.html), [`no-const-assign`](http://eslint.org/docs/rules/no-const-assign.html)
     [`no-var`](http://eslint.org/docs/rules/no-var.html) jscs: [`disallowVar`](http://jscs.info/rule/disallowVar)
@@ -43,3 +48,5 @@
     console.log(a); // ReferenceError
     console.log(b); // ReferenceError
     ```
+    
+**[⬆ back to top](#оглавление)**
