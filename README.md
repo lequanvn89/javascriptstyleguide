@@ -38,7 +38,7 @@
     }
     ```
 
-- [1.2](#1.2) <a name='1.2'></a> Блочная обасть видимости `const` и `let`.
+- [1.2](#1.2) <a name='1.2'></a> Блочная область видимости `const` и `let`.
 
     ```javascript
     // const and let only exist in the blocks they are defined in.
