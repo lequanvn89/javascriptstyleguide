@@ -1,4 +1,4 @@
-# javascriptstyleguide
+# JavaScript (ES6) style guide
 Пишим JavaScript (ES6) красиво.
 
 За основу взята статья ["Airbnb - JavaScript style guide"](https://github.com/airbnb/javascript). Убранно то что я считаю лишним, нужные моменты переосмысленны и переведенны, добавленны некоторые мои видения.
@@ -14,6 +14,7 @@
 
     eslint: [`prefer-const`](http://eslint.org/docs/rules/prefer-const.html), [`no-const-assign`](http://eslint.org/docs/rules/no-const-assign.html)
     [`no-var`](http://eslint.org/docs/rules/no-var.html) jscs: [`disallowVar`](http://jscs.info/rule/disallowVar)
+
 
     > Используя `const` можно предовратить перезаписи простых типов данных (`string`, `number`, `boolean`, `null`, `undefined`) или перезаписи ссылки на сложные типы данных (`array`, `object`, `function`). Улучшает понимание кода другим программистам, какие переменные можно трогать, а какие нет. Отказываясь от `var` получаем везде переменные с блочной областью видимости.
     
@@ -48,7 +49,7 @@
     console.log(a); // ReferenceError
     console.log(b); // ReferenceError
     ```
-    
+
 **[⬆ до оглавления](#Оглавление)**
 
 ## Объекты
@@ -56,6 +57,7 @@
 - [2.1](#2.1) <a name='2.1'></a> Для создания объекта используйте литерал объекта (фигурные скобки). Так проще.
 
     eslint: [`no-new-object`](http://eslint.org/docs/rules/no-new-object.html)
+
 
     ```javascript
     // bad
@@ -65,15 +67,15 @@
     const item = {};
     ```
 
-- [2.2](#2.2) <a name='2.2'></a> Используйте сокращенный синтаксис для объявления методов объекта. 
+- [2.2](#2.2) <a name='2.2'></a> Используйте сокращенный синтаксис для определения методов объекта. 
 
     eslint: [`object-shorthand`](http://eslint.org/docs/rules/object-shorthand.html) jscs: [`requireEnhancedObjectLiterals`](http://jscs.info/rule/requireEnhancedObjectLiterals)
+
 
     ```javascript
     // bad
     const item = {
       value: 1,
-
       addValue: function (value) {
         return this.value + value;
       },
@@ -82,9 +84,31 @@
     // good
     const item = {
       value: 1,
-
       addValue(value) {
         return this.value + value;
       },
     };
     ```
+
+- [2.3](#2.3) <a name='2.3'></a> Используйте сокращенный синтаксис для значений свойств.
+
+    eslint: [`object-shorthand`](http://eslint.org/docs/rules/object-shorthand.html) jscs: [`requireEnhancedObjectLiterals`](http://jscs.info/rule/requireEnhancedObjectLiterals)
+
+
+    > Why? It is shorter to write and descriptive.
+
+    ```javascript
+    const name = 'Awesome item';
+
+    // bad
+    const item = {
+      name: name,
+    };
+
+    // good
+    const item = {
+      name,
+    };
+    ```
+
+**[⬆ до оглавления](#Оглавление)**
