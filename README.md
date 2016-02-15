@@ -95,8 +95,6 @@
     eslint: [`object-shorthand`](http://eslint.org/docs/rules/object-shorthand.html) jscs: [`requireEnhancedObjectLiterals`](http://jscs.info/rule/requireEnhancedObjectLiterals)
 
 
-    > Why? It is shorter to write and descriptive.
-
     ```javascript
     const name = 'Awesome item';
 
@@ -108,6 +106,31 @@
     // good
     const item = {
       name,
+    };
+    ```
+
+
+    Группируйте сокращенные свойства в начале объекта.
+
+
+    ```javascript
+    const name = 'Awesome item';
+    const link = 'https://www.abc.com';
+
+    // bad
+    const item = {
+      index: 1,
+      name,
+      type: 'new',
+      link
+    };
+
+    // good
+    const item = {
+      name,
+      link,
+      index: 1,
+      type: 'new'
     };
     ```
 
