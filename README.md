@@ -64,3 +64,27 @@
     // good
     const item = {};
     ```
+
+- [2.2](#2.2) <a name='2.2'></a> Используйте сокращенный синтаксис для объявления методов объекта. 
+
+    eslint: [`object-shorthand`](http://eslint.org/docs/rules/object-shorthand.html) jscs: [`requireEnhancedObjectLiterals`](http://jscs.info/rule/requireEnhancedObjectLiterals)
+
+    ```javascript
+    // bad
+    const item = {
+      value: 1,
+
+      addValue: function (value) {
+        return this.value + value;
+      },
+    };
+
+    // good
+    const item = {
+      value: 1,
+
+      addValue(value) {
+        return this.value + value;
+      },
+    };
+    ```
