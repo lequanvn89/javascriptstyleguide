@@ -134,31 +134,34 @@
     };
     ```
 
-  - [3.8](#3.8) <a name="3.8"></a> Only quote properties that are invalid identifiers. eslint: [`quote-props`](http://eslint.org/docs/rules/quote-props.html) jscs: [`disallowQuotedKeysInObjects`](http://jscs.info/rule/disallowQuotedKeysInObjects)
+- [2.4](#2.4) <a name="2.4"></a> Имена свойств не нужно обрамлять в кавычки. Обрамляйте только синтактически неправильные именна (но их лучше не использовать).
 
-  > Why? In general we consider it subjectively easier to read. It improves syntax highlighting, and is also more easily optimized by many JS engines.
+    eslint: [`quote-props`](http://eslint.org/docs/rules/quote-props.html) jscs: [`disallowQuotedKeysInObjects`](http://jscs.info/rule/disallowQuotedKeysInObjects)
 
   ```javascript
   // bad
   const bad = {
     'foo': 3,
     'bar': 4,
-    'data-blah': 5,
+    'foo-bar': 5,
   };
 
   // good
   const good = {
     foo: 3,
     bar: 4,
-    'data-blah': 5,
+    'foo-bar': 5,
   };
   ```
   
 **[⬆ до оглавления](#Оглавление)**
 
-## Arrays
+## Массивы
 
-  - [4.1](#4.1) <a name='4.1'></a> Use the literal syntax for array creation. eslint: [`no-array-constructor`](http://eslint.org/docs/rules/no-array-constructor.html)
+- [3.1](#3.1) <a name='3.1'></a> Для создания массива используйте литерал массива (квадратные скобки). Так проще. 
+
+    eslint: [`no-array-constructor`](http://eslint.org/docs/rules/no-array-constructor.html)
+
 
     ```javascript
     // bad
@@ -168,7 +171,7 @@
     const items = [];
     ```
 
-  - [4.2](#4.2) <a name='4.2'></a> Use Array#push instead of direct assignment to add items to an array.
+- [3.2](#3.2) <a name='3.2'></a> Используйте метод `push` для добавления новых элементов.
 
     ```javascript
     const someStack = [];
@@ -180,8 +183,7 @@
     someStack.push('abracadabra');
     ```
 
-  <a name="es6-array-spreads"></a>
-  - [4.3](#4.3) <a name='4.3'></a> Use array spreads `...` to copy arrays.
+- [3.3](#3.3) <a name='3.3'></a> Используйте оператор расширения `...` для копирование массивов.
 
     ```javascript
     // bad
@@ -197,11 +199,14 @@
     const itemsCopy = [...items];
     ```
 
-## Destructuring
+## Деструктурирование
 
-  - [5.1](#5.1) <a name='5.1'></a> Use object destructuring when accessing and using multiple properties of an object. jscs: [`requireObjectDestructuring`](http://jscs.info/rule/requireObjectDestructuring)
+- [4.1](#4.1) <a name='4.1'></a> Используйте деструктуризацию объекта в параметрах функции. 
 
-    > Why? Destructuring saves you from creating temporary references for those properties.
+    jscs: [`requireObjectDestructuring`](http://jscs.info/rule/requireObjectDestructuring)
+
+
+    > Это позволит обойтись без временных переменных.
 
     ```javascript
     // bad
@@ -224,27 +229,31 @@
     }
     ```
 
-  - [5.2](#5.2) <a name='5.2'></a> Use array destructuring. jscs: [`requireArrayDestructuring`](http://jscs.info/rule/requireArrayDestructuring)
+- [4.2](#4.2) <a name='4.2'></a> Используйте деструктуризацию массивов.
+
+    jscs: [`requireArrayDestructuring`](http://jscs.info/rule/requireArrayDestructuring)
+
 
     ```javascript
-    const arr = [1, 2, 3, 4];
+    const arr = [1, 2, 3, 4, 5];
 
     // bad
     const first = arr[0];
     const second = arr[1];
+    const fourth = arr[3];
 
     // good
-    const [first, second] = arr;
+    const [first, second, , fourth] = arr;
     ```
 
-  - [5.3](#5.3) <a name='5.3'></a> Use object destructuring for multiple return values, not array destructuring.
+- [4.3](#4.3) <a name='4.3'></a> Используйте деструктуризацию объекта чтобы вернуть множество переменных. Это удобней чем массивы.
 
-    > Why? You can add new properties over time or change the order of things without breaking call sites.
+    > Со временем можно добавлять новые переменные не ломая места где вызывается и используется функция.
 
     ```javascript
     // bad
     function processInput(input) {
-      // then a miracle occurs
+      // calculating...
       return [left, right, top, bottom];
     }
 
@@ -253,7 +262,7 @@
 
     // good
     function processInput(input) {
-      // then a miracle occurs
+      // calculating...
       return { left, right, top, bottom };
     }
 
@@ -261,9 +270,9 @@
     const { left, right } = processInput(input);
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
-## Strings
+## Strings (!!!!!!!!!)
 
   - [6.1](#6.1) <a name='6.1'></a> Use single quotes `''` for strings. eslint: [`quotes`](http://eslint.org/docs/rules/quotes.html) jscs: [`validateQuoteMarks`](http://jscs.info/rule/validateQuoteMarks)
 
@@ -297,7 +306,7 @@
     ```
   - [6.5](#6.5) <a name='6.5'></a> Never use `eval()` on a string, it opens too many vulnerabilities.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Functions
 
@@ -409,7 +418,7 @@
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Arrow Functions
 
@@ -505,13 +514,13 @@
     });
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Modules
 
   - [10.1](#10.1) <a name='10.1'></a> 
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Iterators and Generators
 
@@ -544,7 +553,7 @@
 
     > Why? They don't transpile well to ES5.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Properties
 
@@ -578,7 +587,7 @@
     const isJedi = getProp('jedi');
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Variables TODO: move to Переменные
 
@@ -710,7 +719,7 @@ switch (x) {
     const foo = maybe1 > maybe2 ? 'bar' : maybeNull;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Blocks
 
@@ -760,7 +769,7 @@ switch (x) {
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Comments
 
@@ -862,7 +871,7 @@ switch (x) {
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Whitespace
 
@@ -1073,7 +1082,7 @@ switch (x) {
       .fail(() => console.log('You have failed this city.'));
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Commas
 
@@ -1154,7 +1163,7 @@ switch (x) {
     ];
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Semicolons
 
@@ -1182,7 +1191,7 @@ switch (x) {
 
     [Read more](http://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214%237365214).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Type Casting & Coercion TODO: сократить текст
 
@@ -1258,7 +1267,7 @@ switch (x) {
     const hasAge = !!age;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Naming Conventions
 
@@ -1391,7 +1400,7 @@ switch (x) {
     export default AirbnbStyleGuide;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## Accessors
 
@@ -1445,7 +1454,7 @@ switch (x) {
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
 
 ## jQuery
 
@@ -1462,4 +1471,4 @@ switch (x) {
     const $sidebarBtn = $('.sidebar-btn');
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ до оглавления](#Оглавление)**
