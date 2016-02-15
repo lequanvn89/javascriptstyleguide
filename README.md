@@ -10,7 +10,7 @@
     eslint: [`prefer-const`](http://eslint.org/docs/rules/prefer-const.html), [`no-const-assign`](http://eslint.org/docs/rules/no-const-assign.html)
     [`no-var`](http://eslint.org/docs/rules/no-var.html) jscs: [`disallowVar`](http://jscs.info/rule/disallowVar)
 
-  > Why? This ensures that you can't reassign your references, which can lead to bugs and difficult to comprehend code.
+    > Why? This ensures that you can't reassign your references, which can lead to bugs and difficult to comprehend code.
 
 ```javascript
 // bad
