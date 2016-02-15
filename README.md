@@ -6,6 +6,7 @@
 ## Оглавление
 
   1. [Переменные](#Переменные)
+  1. [Объекты](#Объекты)
   
 ## Переменные
 
@@ -14,7 +15,7 @@
     eslint: [`prefer-const`](http://eslint.org/docs/rules/prefer-const.html), [`no-const-assign`](http://eslint.org/docs/rules/no-const-assign.html)
     [`no-var`](http://eslint.org/docs/rules/no-var.html) jscs: [`disallowVar`](http://jscs.info/rule/disallowVar)
 
-    > Используя `const` можно предовратить перезаписи простых данных (string, number, boolean) или перезаписи ссылки на комплексные данные (array, object). Улучшает понимание кода другим программистам, какие переменные можно трогать, а какие нет. Отказываясь от `var` получаем везде переменные с блочной областью видимости.
+    > Используя `const` можно предовратить перезаписи простых типов данных (`string`, `number`, `boolean`, `null`, `undefined`) или перезаписи ссылки на сложные типы данных (`array`, `object`, `function`). Улучшает понимание кода другим программистам, какие переменные можно трогать, а какие нет. Отказываясь от `var` получаем везде переменные с блочной областью видимости.
     
     ```javascript
     // bad
@@ -48,4 +49,18 @@
     console.log(b); // ReferenceError
     ```
     
-**[⬆ back to top](#Оглавление)**
+**[⬆ до оглавления](#Оглавление)**
+
+## Объекты
+
+- [2.1](#2.1) <a name='2.1'></a> Для создания объекта используйте литерал объекта (фигурные скобки). Так проще.
+
+    eslint: [`no-new-object`](http://eslint.org/docs/rules/no-new-object.html)
+
+    ```javascript
+    // bad
+    const item = new Object();
+
+    // good
+    const item = {};
+    ```
