@@ -313,30 +313,24 @@
 
 **[⬆ до оглавления](#Оглавление)**
 
+===============================================================================================================
 
+## Строки
 
+- [5.1](#5.1) <a name='5.1'></a> Используйте одинарные кавычки `''` для строк.
 
+    eslint: [`quotes`](http://eslint.org/docs/rules/quotes.html) jscs: [`validateQuoteMarks`](http://jscs.info/rule/validateQuoteMarks)
 
-
-
-
-
-
-===============================================================
-
-## Strings (!!!!!!!!!)
-
-  - [6.1](#6.1) <a name='6.1'></a> Use single quotes `''` for strings. eslint: [`quotes`](http://eslint.org/docs/rules/quotes.html) jscs: [`validateQuoteMarks`](http://jscs.info/rule/validateQuoteMarks)
 
     ```javascript
     // bad
-    const name = "Capt. Janeway";
+    const name = "James Bond. James.";
 
     // good
-    const name = 'Capt. Janeway';
+    const name = 'James. James Bond.';
     ```
 
-  - [6.4](#6.4) <a name='6.4'></a> When programmatically building up strings, use template strings instead of concatenation. eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html) jscs: [`requireTemplateStrings`](http://jscs.info/rule/requireTemplateStrings)
+- [5.2](#5.2) <a name='5.2'></a> Используйте литералы шаблонов `\`\\`\` When programmatically building up strings, use template strings instead of concatenation. eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html) jscs: [`requireTemplateStrings`](http://jscs.info/rule/requireTemplateStrings)
 
     > Why? Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
 
