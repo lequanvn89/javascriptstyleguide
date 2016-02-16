@@ -11,6 +11,7 @@
   1. [Деструктурирование](#Деструктурирование)
   1. [Строки](#Строки)
   1. [Функции](#Функции)
+  1. [Стрелочные функции](#Стрелочные-функции)
   
 ## Переменные
 
@@ -387,10 +388,12 @@
     // bad
     const foo = function () {
     };
+    foo();
 
     // good
     function foo() {
     }
+    foo();
     ```
 
 - [6.2](#6.2) <a name='6.2'></a> Используйте значения аргументов по умолчанию, с `ES6` это стало возможно. Не трогайте аргументы.
@@ -434,7 +437,7 @@
     }
     ```
 
-- [6.4](#6.4) <a name='6.4'></a> Только будьте осторожны с сайд-эфектами.
+- [6.4](#6.4) <a name='6.4'></a> Только будьте осторожны с сайд-эффектами.
 
     ```javascript
     var b = 1;
@@ -467,13 +470,16 @@
 
 ===============================================================================================================
 
-## Arrow Functions
+## Стрелочные функции
 
-  - [8.1](#8.1) <a name='8.1'></a> When you must use function expressions (as when passing an anonymous function), use arrow function notation. eslint: [`prefer-arrow-callback`](http://eslint.org/docs/rules/prefer-arrow-callback.html), [`arrow-spacing`](http://eslint.org/docs/rules/arrow-spacing.html) jscs: [`requireArrowFunctions`](http://jscs.info/rule/requireArrowFunctions)
+  - [7.1](#7.1) <a name='7.1'></a> Когда вы должны использовать функциональный литерал (когда передаете анонимную функцию как параметр функции), то используйте стрелочные функции.
 
-    > Why? It creates a version of the function that executes in the context of `this`, which is usually what you want, and is a more concise syntax.
+    eslint: [`prefer-arrow-callback`](http://eslint.org/docs/rules/prefer-arrow-callback.html), [`arrow-spacing`](http://eslint.org/docs/rules/arrow-spacing.html) jscs: [`requireArrowFunctions`](http://jscs.info/rule/requireArrowFunctions)
 
-    > Why not? If you have a fairly complicated function, you might move that logic out into its own function declaration.
+
+    > Создается функция, которая будет выполняться в контексте текущего `this`, а это то, что нам нужно в большинсте случаях.
+
+    > Но если у вас очень сложная функция, то можете вынести эту логику и объявить отдельную функцию.
 
     ```javascript
     // bad
