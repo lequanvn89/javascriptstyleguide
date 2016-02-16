@@ -333,7 +333,25 @@
     const name = 'James. James Bond.';
     ```
 
-- [5.2](#5.2) <a name='5.2'></a> Используйте литералы шаблонов ``, вместо конкатенации, когда программно строите строки.
+- [5.2](#5.2) <a name='5.2'></a> Используйте конкатенацию для переноса длинных строк.
+
+    ```javascript
+    // bad
+    const errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
+
+    // bad
+    const errorMessage = 'This is a super long error that was thrown because \
+    of Batman. When you stop to think about how Batman had anything to do \
+    with this, you would get nowhere \
+    fast.';
+
+    // good
+    const errorMessage = 'This is a super long error that was thrown because ' +
+      'of Batman. When you stop to think about how Batman had anything to do ' +
+      'with this, you would get nowhere fast.';
+    ```
+
+- [5.3](#5.3) <a name='5.3'></a> Используйте литералы шаблонов ``, вместо конкатенации, когда программно строите строки.
 
     eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html) jscs: [`requireTemplateStrings`](http://jscs.info/rule/requireTemplateStrings)
 
@@ -493,13 +511,17 @@
 
 
     ```javascript
+    // one argument
     [1, 2, 3].map(number => `A string containing the ${number}.`);
     
+    // to return object include parentheses around it
     [1, 2, 3].map(number => ({num: number, foo: 'bar'}));
     
-    [1, 2, 3].map(() => 'Zero params');
+    // no argument, use parentheses
+    [1, 2, 3].map(() => 'No argument');
     
-    [1, 2, 3].map((number, index) => 'Two or mort params');
+    // two or more arguments, use parentheses
+    [1, 2, 3].map((number, index) => 'Two or more arguments');
     ```
 
 
