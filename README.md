@@ -357,14 +357,8 @@
     }
 
     // bad
-    const errorMessage = 'This is a super long error that was thrown because \
-      of Batman. When you stop to think about how Batman had anything to do \
-      with this, you would get nowhere \
-      fast.';
-
-    // bad
-    const errorMessage = 'This is a super long error that was thrown because ' +
-      'of Batman. When you stop to think about how Batman had anything to do ' +
+    const errorMessage = 'This is a super long error that was thrown because\n' +
+      'of Batman. When you stop to think about how Batman had anything to do\n' +
       'with this, you would get nowhere fast.';
 
     // good
@@ -472,7 +466,7 @@
 
 ## Стрелочные функции
 
-  - [7.1](#7.1) <a name='7.1'></a> Когда вы должны использовать функциональный литерал (когда передаете анонимную функцию как параметр функции), то используйте стрелочные функции.
+- [7.1](#7.1) <a name='7.1'></a> Когда вы должны использовать функциональный литерал (когда передаете анонимную функцию как параметр функции), то используйте стрелочные функции.
 
     eslint: [`prefer-arrow-callback`](http://eslint.org/docs/rules/prefer-arrow-callback.html), [`arrow-spacing`](http://eslint.org/docs/rules/arrow-spacing.html) jscs: [`requireArrowFunctions`](http://jscs.info/rule/requireArrowFunctions)
 
@@ -495,75 +489,38 @@
     });
     ```
 
-  - [8.2](#8.2) <a name='8.2'></a> If the function body consists of a single expression, omit the braces and use the implicit return. Otherwise, keep the braces and use a `return` statement. eslint: [`arrow-parens`](http://eslint.org/docs/rules/arrow-parens.html), [`arrow-body-style`](http://eslint.org/docs/rules/arrow-body-style.html) jscs:  [`disallowParenthesesAroundArrowParam`](http://jscs.info/rule/disallowParenthesesAroundArrowParam), [`requireShorthandArrowFunctions`](http://jscs.info/rule/requireShorthandArrowFunctions)
+- [7.2](#7.2) <a name='7.2'></a> Разный синтаксис стрелочной функции. 
 
-    > Why? Syntactic sugar. It reads well when multiple functions are chained together.
+    [7.2.1](#7.2.1) <a name='7.2.1'></a> Однострочная функция, опускаются фигурные скобки и используется неявный `return`.
 
-    > Why not? If you plan on returning an object.
 
     ```javascript
-    // good
     [1, 2, 3].map(number => `A string containing the ${number}.`);
-
-    // bad
-    [1, 2, 3].map(number => {
-      const nextNumber = number + 1;
-      `A string containing the ${nextNumber}.`;
-    });
-
-    // good
-    [1, 2, 3].map((number) => {
-      const nextNumber = number + 1;
-      return `A string containing the ${nextNumber}.`;
-    });
+    
+    [1, 2, 3].map(number => ({num: number, foo: 'bar'}));
+    
+    [1, 2, 3].map(() => 'Zero params');
+    
+    [1, 2, 3].map((number, index) => 'Two or mort params');
     ```
 
-  - [8.3](#8.3) <a name='8.3'></a> In case the expression spans over multiple lines, wrap it in parentheses for better readability.
+Если выражение не помещается в одну строку, то обрамляем его в круглые скобки.
 
-    > Why? It shows clearly where the function starts and ends.
 
-    ```js
-    // bad
-    [1, 2, 3].map(number => 'As time went by, the string containing the ' +
-      `${number} became much longer. So we needed to break it over multiple ` +
-      'lines.'
-    );
-
-    // good
+    ```javascript
     [1, 2, 3].map(number => (
       `As time went by, the string containing the ${number} became much ` +
       'longer. So we needed to break it over multiple lines.'
     ));
     ```
 
+Многострочная функция, используется круглые скобки для аргументов, фигурные скобки для блок кода и явный `return`.
 
-  - [8.4](#8.4) <a name='8.4'></a> If your function takes a single argument and doesn’t use braces, omit the parentheses. Otherwise, always include parentheses around arguments. eslint: [`arrow-parens`](http://eslint.org/docs/rules/arrow-parens.html) jscs:  [`disallowParenthesesAroundArrowParam`](http://jscs.info/rule/disallowParenthesesAroundArrowParam)
 
-    > Why? Less visual clutter.
-
-    ```js
-    // bad
-    [1, 2, 3].map((x) => x * x);
-
-    // good
-    [1, 2, 3].map(x => x * x);
-
-    // good
-    [1, 2, 3].map(number => (
-      `A long string with the ${number}. It’s so long that we’ve broken it ` +
-      'over multiple lines!'
-    ));
-
-    // bad
-    [1, 2, 3].map(x => {
-      const y = x + 1;
-      return x * y;
-    });
-
-    // good
-    [1, 2, 3].map((x) => {
-      const y = x + 1;
-      return x * y;
+    ```javascript
+    [1, 2, 3].map((number) => {
+      const nextNumber = number + 1;
+      return `A string containing the ${nextNumber}.`;
     });
     ```
 
