@@ -7,6 +7,10 @@
 
   1. [Переменные](#Переменные)
   1. [Объекты](#Объекты)
+  1. [Массивы](#Массивы)
+  1. [Деструктурирование](#Деструктурирование)
+  1. [Строки](#Строки)
+  1. [Функции](#Функции)
   
 ## Переменные
 
@@ -328,7 +332,7 @@
     const name = 'James. James Bond.';
     ```
 
-- [5.2](#5.2) <a name='5.2'></a> Используйте литералы шаблонов \`\`, когда программно строите строки, вместо конкатенации.
+- [5.2](#5.2) <a name='5.2'></a> Используйте литералы шаблонов ` `` `, вместо конкатенации, когда программно строите строки.
 
     eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html) jscs: [`requireTemplateStrings`](http://jscs.info/rule/requireTemplateStrings)
 
@@ -372,7 +376,7 @@
 
 ===============================================================================================================
 
-## Functions
+## Функции
 
   - [7.1](#7.1) <a name='7.1'></a> Use function declarations instead of function expressions. jscs: [`requireFunctionDeclarations`](http://jscs.info/rule/requireFunctionDeclarations)
 
