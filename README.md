@@ -330,7 +330,7 @@
     const name = 'James. James Bond.';
     ```
 
-- [5.2](#5.2) <a name='5.2'></a> Используйте литералы шаблонов \`\` When programmatically building up strings, use template strings instead of concatenation. eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html) jscs: [`requireTemplateStrings`](http://jscs.info/rule/requireTemplateStrings)
+- [5.2](#5.2) <a name='5.2'></a> Используйте литералы шаблонов ` \`\` ` When programmatically building up strings, use template strings instead of concatenation. eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html) jscs: [`requireTemplateStrings`](http://jscs.info/rule/requireTemplateStrings)
 
     > Why? Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
 
