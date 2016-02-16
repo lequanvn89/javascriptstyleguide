@@ -332,7 +332,7 @@
     const name = 'James. James Bond.';
     ```
 
-- [5.2](#5.2) <a name='5.2'></a> Используйте литералы шаблонов ` `` `, вместо конкатенации, когда программно строите строки.
+- [5.2](#5.2) <a name='5.2'></a> Используйте литералы шаблонов ` \`\` `, вместо конкатенации, когда программно строите строки.
 
     eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html) jscs: [`requireTemplateStrings`](http://jscs.info/rule/requireTemplateStrings)
 
