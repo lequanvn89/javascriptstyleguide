@@ -313,8 +313,6 @@
 
 **[⬆ до оглавления](#Оглавление)**
 
-===============================================================================================================
-
 ## Строки
 
 - [5.1](#5.1) <a name='5.1'></a> Используйте одинарные кавычки `''` для строк.
@@ -330,9 +328,12 @@
     const name = 'James. James Bond.';
     ```
 
-- [5.2](#5.2) <a name='5.2'></a> Используйте литералы шаблонов `\`\` When programmatically building up strings, use template strings instead of concatenation. eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html) jscs: [`requireTemplateStrings`](http://jscs.info/rule/requireTemplateStrings)
+- [5.2](#5.2) <a name='5.2'></a> Используйте литералы шаблонов \`\`, когда программно строите строки, вместо конкатенации.
 
-    > Why? Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
+    eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html) jscs: [`requireTemplateStrings`](http://jscs.info/rule/requireTemplateStrings)
+
+
+    > Шаблоны более читаемы, имеют лаконичный синтаксис, могут быть многострочными и могут интерполироваться.
 
     ```javascript
     // bad
@@ -349,10 +350,27 @@
     function sayHi(name) {
       return `How are you, ${name}?`;
     }
+
+    // bad
+    const errorMessage = 'This is a super long error that was thrown because \
+      of Batman. When you stop to think about how Batman had anything to do \
+      with this, you would get nowhere \
+      fast.';
+
+    // bad
+    const errorMessage = 'This is a super long error that was thrown because ' +
+      'of Batman. When you stop to think about how Batman had anything to do ' +
+      'with this, you would get nowhere fast.';
+
+    // good
+    const errorMessage = `This is a super long error that was thrown because 
+      of Batman. When you stop to think about how Batman had anything to do 
+      with this, you would get nowhere fast.`;
     ```
-  - [6.5](#6.5) <a name='6.5'></a> Never use `eval()` on a string, it opens too many vulnerabilities.
 
 **[⬆ до оглавления](#Оглавление)**
+
+===============================================================================================================
 
 ## Functions
 
