@@ -50,7 +50,7 @@
     console.log(b); // ReferenceError
     ```
 
-- [1.3](#1.3) <a name='1.3'></a> Always use `const` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace. Captain Planet warned us of that.
+- [1.3](#1.3) <a name='1.3'></a> Всегда используйте `const` или `let` для объявления переменных. Иначе переменная будет объявленна глобально, а это всегда плохо.
 
     ```javascript
     // bad
@@ -60,62 +60,11 @@
     const superPower = new SuperPower();
     ```
 
-  - [13.3](#13.3) <a name='13.3'></a> Group all your `const`s and then group all your `let`s. Assign variables where you need them, but place them in a reasonable place.
-
-    > Why? This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
-
-    ```javascript
-    // bad
-    let i, len, dragonball,
-        items = getItems(),
-        goSportsTeam = true;
-
-    // bad
-    let i;
-    const items = getItems();
-    let dragonball;
-    const goSportsTeam = true;
-    let len;
-
-    // good
-    const goSportsTeam = true;
-    const items = getItems();
-    let dragonball;
-    let i;
-    let length;
-    ```
-
-Temporal dead zone and errors with let
-
-Redeclaring the same variable within the same function or block scope raises a TypeError.
-
-if (x) {
-  let foo;
-  let foo; // TypeError thrown.
-}
-In ECMAScript 2015, let will hoist the variable to the top of the block. However, referencing the variable in the block before the variable declaration results in a ReferenceError. The variable is in a "temporal dead zone" from the start of the block until the declaration is processed.
-
-function do_something() {
-  console.log(foo); // ReferenceError
-  let foo = 2;
-}
-You may encounter errors in switch statements because there is only one underlying block.
-
-switch (x) {
-  case 0:
-    let foo;
-    break;
-    
-  case 1:
-    let foo; // TypeError for redeclaration.
-    break;
-}
-
 **[⬆ до оглавления](#Оглавление)**
 
 ## Объекты
 
-- [2.1](#2.1) <a name='2.1'></a> Для создания объекта используйте литерал объекта (фигурные скобки). Так проще.
+- [2.1](#2.1) <a name='2.1'></a> Для создания объекта используйте литерал объекта `{}`. Так проще.
 
     eslint: [`no-new-object`](http://eslint.org/docs/rules/no-new-object.html)
 
@@ -250,7 +199,7 @@ switch (x) {
 
 ## Массивы
 
-- [3.1](#3.1) <a name='3.1'></a> Для создания массива используйте литерал массива (квадратные скобки). Так проще. 
+- [3.1](#3.1) <a name='3.1'></a> Для создания массива используйте литерал массива `[]`. Так проще. 
 
     eslint: [`no-array-constructor`](http://eslint.org/docs/rules/no-array-constructor.html)
 
