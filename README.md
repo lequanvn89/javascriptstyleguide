@@ -50,6 +50,67 @@
     console.log(b); // ReferenceError
     ```
 
+- [1.3](#1.3) <a name='1.3'></a> Always use `const` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace. Captain Planet warned us of that.
+
+    ```javascript
+    // bad
+    superPower = new SuperPower();
+
+    // good
+    const superPower = new SuperPower();
+    ```
+
+  - [13.3](#13.3) <a name='13.3'></a> Group all your `const`s and then group all your `let`s. Assign variables where you need them, but place them in a reasonable place.
+
+    > Why? This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
+
+    ```javascript
+    // bad
+    let i, len, dragonball,
+        items = getItems(),
+        goSportsTeam = true;
+
+    // bad
+    let i;
+    const items = getItems();
+    let dragonball;
+    const goSportsTeam = true;
+    let len;
+
+    // good
+    const goSportsTeam = true;
+    const items = getItems();
+    let dragonball;
+    let i;
+    let length;
+    ```
+
+Temporal dead zone and errors with let
+
+Redeclaring the same variable within the same function or block scope raises a TypeError.
+
+if (x) {
+  let foo;
+  let foo; // TypeError thrown.
+}
+In ECMAScript 2015, let will hoist the variable to the top of the block. However, referencing the variable in the block before the variable declaration results in a ReferenceError. The variable is in a "temporal dead zone" from the start of the block until the declaration is processed.
+
+function do_something() {
+  console.log(foo); // ReferenceError
+  let foo = 2;
+}
+You may encounter errors in switch statements because there is only one underlying block.
+
+switch (x) {
+  case 0:
+    let foo;
+    break;
+    
+  case 1:
+    let foo; // TypeError for redeclaration.
+    break;
+}
+
 **[⬆ до оглавления](#Оглавление)**
 
 ## Объекты
@@ -153,7 +214,38 @@
     'foo-bar': 5,
   };
   ```
-  
+
+- [2.5](#2.5) <a name='2.5'></a> Используйте точучную нотацию для доступа к свойствам объекта.
+    eslint: [`dot-notation`](http://eslint.org/docs/rules/dot-notation.html) jscs: [`requireDotNotation`](http://jscs.info/rule/requireDotNotation)
+
+    ```javascript
+    const item = {
+      foo: true,
+      bar: 28,
+    };
+
+    // bad
+    const hasFoo = item['foo'];
+
+    // good
+    const hasFoo = item.foo;
+    ```
+
+- [2.6](#2.6) <a name='2.6'></a> Используйте скобочную нотацию `[]`, когда вы обращаетесь к свойству через имя хранимое в переменной.
+
+    ```javascript
+    const item = {
+      foo: true,
+      bar: 28,
+    };
+
+    function getProp(prop) {
+      return item[prop];
+    }
+
+    const hasFoo = getProp('foo');
+    ```
+
 **[⬆ до оглавления](#Оглавление)**
 
 ## Массивы
@@ -246,7 +338,7 @@
     const [first, second, , fourth] = arr;
     ```
 
-- [4.3](#4.3) <a name='4.3'></a> Используйте деструктуризацию объекта чтобы вернуть множество переменных. Это удобней чем массивы.
+- [4.3](#4.3) <a name='4.3'></a> Множество значений возвращайте в виде объекта, чтобы потом использовать деструктуризацию объекта. Это удобней чем массивы.
 
     > Со временем можно добавлять новые переменные не ломая места где вызывается и используется функция.
 
@@ -271,6 +363,17 @@
     ```
 
 **[⬆ до оглавления](#Оглавление)**
+
+
+
+
+
+
+
+
+
+
+===============================================================
 
 ## Strings (!!!!!!!!!)
 
@@ -554,103 +657,6 @@
     > Why? They don't transpile well to ES5.
 
 **[⬆ до оглавления](#Оглавление)**
-
-## Properties
-
-  - [12.1](#12.1) <a name='12.1'></a> Use dot notation when accessing properties. eslint: [`dot-notation`](http://eslint.org/docs/rules/dot-notation.html) jscs: [`requireDotNotation`](http://jscs.info/rule/requireDotNotation)
-
-    ```javascript
-    const luke = {
-      jedi: true,
-      age: 28,
-    };
-
-    // bad
-    const isJedi = luke['jedi'];
-
-    // good
-    const isJedi = luke.jedi;
-    ```
-
-  - [12.2](#12.2) <a name='12.2'></a> Use subscript notation `[]` when accessing properties with a variable.
-
-    ```javascript
-    const luke = {
-      jedi: true,
-      age: 28,
-    };
-
-    function getProp(prop) {
-      return luke[prop];
-    }
-
-    const isJedi = getProp('jedi');
-    ```
-
-**[⬆ до оглавления](#Оглавление)**
-
-## Variables TODO: move to Переменные
-
-  - [13.1](#13.1) <a name='13.1'></a> Always use `const` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace. Captain Planet warned us of that.
-
-    ```javascript
-    // bad
-    superPower = new SuperPower();
-
-    // good
-    const superPower = new SuperPower();
-    ```
-
-  - [13.3](#13.3) <a name='13.3'></a> Group all your `const`s and then group all your `let`s. Assign variables where you need them, but place them in a reasonable place.
-
-    > Why? This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
-
-    ```javascript
-    // bad
-    let i, len, dragonball,
-        items = getItems(),
-        goSportsTeam = true;
-
-    // bad
-    let i;
-    const items = getItems();
-    let dragonball;
-    const goSportsTeam = true;
-    let len;
-
-    // good
-    const goSportsTeam = true;
-    const items = getItems();
-    let dragonball;
-    let i;
-    let length;
-    ```
-
-Temporal dead zone and errors with let
-
-Redeclaring the same variable within the same function or block scope raises a TypeError.
-
-if (x) {
-  let foo;
-  let foo; // TypeError thrown.
-}
-In ECMAScript 2015, let will hoist the variable to the top of the block. However, referencing the variable in the block before the variable declaration results in a ReferenceError. The variable is in a "temporal dead zone" from the start of the block until the declaration is processed.
-
-function do_something() {
-  console.log(foo); // ReferenceError
-  let foo = 2;
-}
-You may encounter errors in switch statements because there is only one underlying block.
-
-switch (x) {
-  case 0:
-    let foo;
-    break;
-    
-  case 1:
-    let foo; // TypeError for redeclaration.
-    break;
-}
 
 ## Comparison Operators & Equality
 
