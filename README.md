@@ -12,6 +12,9 @@
   1. [Строки](#Строки)
   1. [Функции](#Функции)
   1. [Стрелочные функции](#Стрелочные-функции)
+  1. [Импорты](#Импорты)
+  1. [Операторы равенства и идентичности](#Операторы-равенства-и-идентичности)
+  1. [Блоки кода](#Блоки-кода)
   
 ## Переменные
 
@@ -548,59 +551,53 @@
 
 **[⬆ до оглавления](#Оглавление)**
 
-===============================================================================================================
+## Импорты
 
-## Modules
-
-  - [10.1](#10.1) <a name='10.1'></a> 
-
-**[⬆ до оглавления](#Оглавление)**
-
-## Iterators and Generators
-
-  - [11.1](#11.1) <a name='11.1'></a> Don't use iterators. Prefer JavaScript's higher-order functions like `map()` and `reduce()` instead of loops like `for-of`. eslint: [`no-iterator`](http://eslint.org/docs/rules/no-iterator.html)
-
-    > Why? This enforces our immutable rule. Dealing with pure functions that return values is easier to reason about than side-effects.
+- [8.1](#8.1) <a name='8.1'></a> Первым идет блок импортов стандартных библиотек. Через одну пустую строку идет блок импортов модулей из проекта. Отступаем две строки и пишем код.
 
     ```javascript
-    const numbers = [1, 2, 3, 4, 5];
-
-    // bad
-    let sum = 0;
-    for (let num of numbers) {
-      sum += num;
-    }
-
-    sum === 15;
-
-    // good
-    let sum = 0;
-    numbers.forEach(num => sum += num);
-    sum === 15;
-
-    // best (use the functional force)
-    const sum = numbers.reduce((total, num) => total + num, 0);
-    sum === 15;
+    import React from 'react';
+    import _ from 'lodash';
+    import {gettext} from 'gettext';
+    
+    import {view} from './views/index';
+    import {model} from './model';
+    import {update} from './update';
+    
+    
+    function initApp() {};
     ```
-
-  - [11.2](#11.2) <a name='11.2'></a> Don't use generators for now.
-
-    > Why? They don't transpile well to ES5.
 
 **[⬆ до оглавления](#Оглавление)**
 
-## Comparison Operators & Equality
+## Операторы равенства и идентичности
 
-  - [15.1](#15.1) <a name='15.1'></a> Use `===` and `!==` over `==` and `!=`. eslint: [`eqeqeq`](http://eslint.org/docs/rules/eqeqeq.html)
+- [9.1](#9.1) <a name='9.1'></a> Используйте `===` и `!==` вместо `==` и `!=`.
 
-  - [15.2](#15.2) <a name='15.2'></a> Conditional statements such as the `if` statement evaluate their expression using coercion with the `ToBoolean` abstract method and always follow these simple rules:
+    eslint: [`eqeqeq`](http://eslint.org/docs/rules/eqeqeq.html)
 
-    + **Objects** evaluate to **true**
-    + **Undefined** evaluates to **false**
-    + **Null** evaluates to **false**
-    + **Booleans** evaluate to **the value of the boolean**
-    + **Numbers** evaluate to **false** if **+0, -0, or NaN**, otherwise **true**
-    + **Strings** evaluate to **false** if an empty string `''`, otherwise **true**
+
+    > При сравнивании неявно выполняется приведение типов переменных. Чтобы избедать этой путаницы всегда используйте операторы `===` и `!==`, которые сравнивают и значения и типы выражений.
+
+    ```javascript
+    // bad
+    false == 0;  // true
+    false == ''; // true
+
+    // good
+    false === 0;  // false
+    false === ''; // false
+    ```
+
+- [9.2](#9.2) <a name='9.2'></a> Условные выражения, такие как `if`, вычисляются посредством приведения к логическому типу `Boolean` через метод `ToBoolean`, и всегда следует таким правилам:
+
+    + **Objects** соответствует **true**
+    + **Undefined** соответствует **false**
+    + **Null** соответствует **false**
+    + **Booleans** не меняется
+    + **Numbers** соответствует **false** если является **+0, -0, или NaN**, иначе **true**
+    + **Strings** соответствует **false** если это пустая строка `''`, иначе **true**
+
 
     ```javascript
     if ([0] && []) {
@@ -609,7 +606,7 @@
     }
     ```
 
-  - [15.3](#15.3) <a name='15.3'></a> Use shortcuts.
+- [9.3](#9.3) <a name='9.3'></a> Используйте короткий синтаксис.
 
     ```javascript
     // bad
@@ -633,34 +630,11 @@
     }
     ```
 
-  - [15.5](#15.5) <a name='15.5'></a> Ternaries should not be nested and generally be single line expressions.
-
-    eslint rules: [`no-nested-ternary`](http://eslint.org/docs/rules/no-nested-ternary.html).
-
-    ```javascript
-    // bad
-    const foo = maybe1 > maybe2
-      ? "bar"
-      : value1 > value2 ? "baz" : null;
-
-    // better
-    const maybeNull = value1 > value2 ? 'baz' : null;
-
-    const foo = maybe1 > maybe2
-      ? 'bar'
-      : maybeNull;
-
-    // best
-    const maybeNull = value1 > value2 ? 'baz' : null;
-
-    const foo = maybe1 > maybe2 ? 'bar' : maybeNull;
-    ```
-
 **[⬆ до оглавления](#Оглавление)**
 
-## Blocks
+## Блоки кода
 
-  - [16.1](#16.1) <a name='16.1'></a> Use braces with all multi-line blocks.
+- [10.1](#10.1) <a name='10.1'></a> Используйте фигурные скобки для всех многострочных блоков.
 
     ```javascript
     // bad
@@ -684,33 +658,11 @@
     }
     ```
 
-  - [16.2](#16.2) <a name='16.2'></a> If you're using multi-line blocks with `if` and `else`, put `else` on the same line as your
-    `if` block's closing brace. eslint: [`brace-style`](http://eslint.org/docs/rules/brace-style.html) jscs:  [`disallowNewlineBeforeBlockStatements`](http://jscs.info/rule/disallowNewlineBeforeBlockStatements)
-
-    ```javascript
-    // bad
-    if (test) {
-      thing1();
-      thing2();
-    }
-    else {
-      thing3();
-    }
-
-    // good
-    if (test) {
-      thing1();
-      thing2();
-    } else {
-      thing3();
-    }
-    ```
-
 **[⬆ до оглавления](#Оглавление)**
 
-## Comments
+## Комментарии
 
-  - [17.1](#17.1) <a name='17.1'></a> Use `/** ... */` for multi-line comments. Include a description, specify types and values for all parameters and return values.
+- [11.1](#11.1) <a name='11.1'></a> Используйте `/** ... */` для многострочных комментариев.
 
     ```javascript
     // bad
@@ -742,7 +694,7 @@
     }
     ```
 
-  - [17.2](#17.2) <a name='17.2'></a> Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment unless it's on the first line of a block.
+- [11.2](#11.2) <a name='11.2'></a> Используйте `//` для однострочного комментария. Размещайте комментарий на новой строке над тем что комментируете. Можете добавить пустую строку над комментарием, чтобы визуально его выделить.
 
     ```javascript
     // bad
@@ -780,58 +732,33 @@
     }
     ```
 
-  - [17.3](#17.3) <a name='17.3'></a> Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME -- need to figure this out` or `TODO -- need to implement`.
-
-  - [17.4](#17.4) <a name='17.4'></a> Use `// FIXME:` to annotate problems.
-
-    ```javascript
-    class Calculator extends Abacus {
-      constructor() {
-        super();
-
-        // FIXME: shouldn't use a global here
-        total = 0;
-      }
-    }
-    ```
-
-  - [17.5](#17.5) <a name='17.5'></a> Use `// TODO:` to annotate solutions to problems.
-
-    ```javascript
-    class Calculator extends Abacus {
-      constructor() {
-        super();
-
-        // TODO: total should be configurable by an options param
-        this.total = 0;
-      }
-    }
-    ```
-
 **[⬆ до оглавления](#Оглавление)**
 
-## Whitespace
+## Табы и пробелы
 
-  - [18.1](#18.1) <a name='18.1'></a> Use soft tabs set to 2 spaces. eslint: [`indent`](http://eslint.org/docs/rules/indent.html) jscs: [`validateIndentation`](http://jscs.info/rule/validateIndentation)
+- [12.1](#12.1) <a name='12.1'></a> Используйте программную табуляцию из 4 пробелов (нажимая `Tab` редактор проставляет 4 пробела).
 
     ```javascript
     // bad
     function foo() {
-    ∙∙∙∙const name;
+    ∙const name;
     }
 
     // bad
     function bar() {
-    ∙const name;
+    ∙∙const name;
     }
 
     // good
     function baz() {
-    ∙∙const name;
+    ∙∙∙∙const name;
     }
     ```
 
-  - [18.2](#18.2) <a name='18.2'></a> Place 1 space before the leading brace. eslint: [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks.html) jscs: [`requireSpaceBeforeBlockStatements`](http://jscs.info/rule/requireSpaceBeforeBlockStatements)
+- [18.2](#18.2) <a name='18.2'></a> Поставьте один пробел перед открывающей фигурной скобкой.
+
+    eslint: [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks.html) jscs: [`requireSpaceBeforeBlockStatements`](http://jscs.info/rule/requireSpaceBeforeBlockStatements)
+
 
     ```javascript
     // bad
@@ -857,7 +784,10 @@
     });
     ```
 
-  - [18.3](#18.3) <a name='18.3'></a> Place 1 space before the opening parenthesis in control statements (`if`, `while` etc.). Place no space between the argument list and the function name in function calls and declarations. eslint: [`space-after-keywords`](http://eslint.org/docs/rules/space-after-keywords.html), [`space-before-keywords`](http://eslint.org/docs/rules/space-before-keywords.html) jscs:  [`requireSpaceAfterKeywords`](http://jscs.info/rule/requireSpaceAfterKeywords)
+- [12.3](#12.3) <a name='12.3'></a> Поставьте один пробел перед открывающей круглой скобкой в операторах управления (`if`, `while`, `for` и т.д.).
+
+    eslint: [`space-after-keywords`](http://eslint.org/docs/rules/space-after-keywords.html), [`space-before-keywords`](http://eslint.org/docs/rules/space-before-keywords.html) jscs:  [`requireSpaceAfterKeywords`](http://jscs.info/rule/requireSpaceAfterKeywords)
+
 
     ```javascript
     // bad
@@ -869,19 +799,12 @@
     if (isJedi) {
       fight();
     }
-
-    // bad
-    function fight () {
-      console.log ('Swooosh!');
-    }
-
-    // good
-    function fight() {
-      console.log('Swooosh!');
-    }
     ```
 
-  - [18.4](#18.4) <a name='18.4'></a> Set off operators with spaces. eslint: [`space-infix-ops`](http://eslint.org/docs/rules/space-infix-ops.html) jscs: [`requireSpaceBeforeBinaryOperators`](http://jscs.info/rule/requireSpaceBeforeBinaryOperators), [`requireSpaceAfterBinaryOperators`](http://jscs.info/rule/requireSpaceAfterBinaryOperators)
+- [12.4](#12.4) <a name='12.4'></a> Пробелы в вычислениях. 
+
+    eslint: [`space-infix-ops`](http://eslint.org/docs/rules/space-infix-ops.html) jscs: [`requireSpaceBeforeBinaryOperators`](http://jscs.info/rule/requireSpaceBeforeBinaryOperators), [`requireSpaceAfterBinaryOperators`](http://jscs.info/rule/requireSpaceAfterBinaryOperators)
+
 
     ```javascript
     // bad
@@ -891,112 +814,9 @@
     const x = y + 5;
     ```
 
-  - [18.7](#18.7) <a name='18.7'></a> Leave a blank line after blocks and before the next statement. jscs: [`requirePaddingNewLinesAfterBlocks`](http://jscs.info/rule/requirePaddingNewLinesAfterBlocks)
+- [12.5](#12.5) <a name='12.5'></a> Длинна строки устанавливается в 100 символов, все что длиннее переносим. Допускается выход за границы в разумных пределах.
 
-    ```javascript
-    // bad
-    if (foo) {
-      return bar;
-    }
-    return baz;
-
-    // good
-    if (foo) {
-      return bar;
-    }
-
-    return baz;
-
-    // bad
-    const obj = {
-      foo() {
-      },
-      bar() {
-      },
-    };
-    return obj;
-
-    // good
-    const obj = {
-      foo() {
-      },
-
-      bar() {
-      },
-    };
-
-    return obj;
-
-    // bad
-    const arr = [
-      function foo() {
-      },
-      function bar() {
-      },
-    ];
-    return arr;
-
-    // good
-    const arr = [
-      function foo() {
-      },
-
-      function bar() {
-      },
-    ];
-
-    return arr;
-    ```
-
-  - [18.9](#18.9) <a name='18.9'></a> Do not add spaces inside parentheses. eslint: [`space-in-parens`](http://eslint.org/docs/rules/space-in-parens.html) jscs: [`disallowSpacesInsideParentheses`](http://jscs.info/rule/disallowSpacesInsideParentheses)
-
-    ```javascript
-    // bad
-    function bar( foo ) {
-      return foo;
-    }
-
-    // good
-    function bar(foo) {
-      return foo;
-    }
-
-    // bad
-    if ( foo ) {
-      console.log(foo);
-    }
-
-    // good
-    if (foo) {
-      console.log(foo);
-    }
-    ```
-
-  - [18.10](#18.10) <a name='18.10'></a> Do not add spaces inside brackets. eslint: [`array-bracket-spacing`](http://eslint.org/docs/rules/array-bracket-spacing.html) jscs: [`disallowSpacesInsideArrayBrackets`](http://jscs.info/rule/disallowSpacesInsideArrayBrackets)
-
-    ```javascript
-    // bad
-    const foo = [ 1, 2, 3 ];
-    console.log(foo[ 0 ]);
-
-    // good
-    const foo = [1, 2, 3];
-    console.log(foo[0]);
-    ```
-
-  - [18.11](#18.11) <a name='18.11'></a> Add spaces inside curly braces. eslint: [`object-curly-spacing`](http://eslint.org/docs/rules/object-curly-spacing.html) jscs: [`disallowSpacesInsideObjectBrackets`](http://jscs.info/rule/disallowSpacesInsideObjectBrackets)
-
-    ```javascript
-    // bad
-    const foo = {clark: 'kent'};
-
-    // good
-    const foo = { clark: 'kent' };
-    ```
-
-  - [18.12](#18.12) <a name='18.12'></a> Avoid having lines of code that are longer than 100 characters (including whitespace). eslint: [`max-len`](http://eslint.org/docs/rules/max-len.html) jscs: [`maximumLineLength`](http://jscs.info/rule/maximumLineLength)
-
-    > Why? This ensures readability and maintainability.
+    > Длинные строки неудобно читать. На современных FullHD мониторах можно расположить два окна рядом по горизонтали. Можно писать и под 80 символов, но это узковато.
 
     ```javascript
     // bad
@@ -1021,9 +841,12 @@
 
 **[⬆ до оглавления](#Оглавление)**
 
-## Commas
+## Запятые
 
-  - [19.1](#19.1) <a name='19.1'></a> Leading commas: **Nope.** eslint: [`comma-style`](http://eslint.org/docs/rules/comma-style.html) jscs: [`requireCommaBeforeLineBreak`](http://jscs.info/rule/requireCommaBeforeLineBreak)
+- [13.1](#13.1) <a name='13.1'></a> Скажите **нет** запятым в начале строки.
+
+    eslint: [`comma-style`](http://eslint.org/docs/rules/comma-style.html) jscs: [`requireCommaBeforeLineBreak`](http://jscs.info/rule/requireCommaBeforeLineBreak)
+
 
     ```javascript
     // bad
@@ -1057,12 +880,15 @@
     };
     ```
 
-  - [19.2](#19.2) <a name='19.2'></a> Additional trailing comma: **Yup.** eslint: [`comma-dangle`](http://eslint.org/docs/rules/comma-dangle.html) jscs: [`requireTrailingComma`](http://jscs.info/rule/requireTrailingComma)
+- [13.2](#13.2) <a name='13.2'></a> Есть возможность ставить дополнительные запятые в конце объектов и массивов.
 
-    > Why? This leads to cleaner git diffs. Also, transpilers like Babel will remove the additional trailing comma in the transpiled code which means you don't have to worry about the [trailing comma problem](es5/README.md#commas) in legacy browsers.
+    eslint: [`comma-dangle`](http://eslint.org/docs/rules/comma-dangle.html) jscs: [`requireTrailingComma`](http://jscs.info/rule/requireTrailingComma)
+
+
+    > Это улучшит `diff`'ы, меняется одна строка, а не две. Удобней добавлять свойства и элементы, не нужно беспокоиться есть или нет запятые, потому что они всегда есть. Babel при транскомпиляции игнорирует эти запятые, поэтому можно не беспокоиться об [trailing comma problem](es5/README.md#commas) старых браузерах.
 
     ```javascript
-    // bad - git diff without trailing comma
+    // bad - diff without trailing comma
     const hero = {
          firstName: 'Florence',
     -    lastName: 'Nightingale'
@@ -1070,7 +896,7 @@
     +    inventorOf: ['coxcomb graph', 'modern nursing']
     };
 
-    // good - git diff with trailing comma
+    // good - diff with trailing comma
     const hero = {
          firstName: 'Florence',
          lastName: 'Nightingale',
@@ -1102,9 +928,12 @@
 
 **[⬆ до оглавления](#Оглавление)**
 
-## Semicolons
+## Точки с запятой
 
-  - [20.1](#20.1) <a name='20.1'></a> **Yup.** eslint: [`semi`](http://eslint.org/docs/rules/semi.html) jscs: [`requireSemicolons`](http://jscs.info/rule/requireSemicolons)
+- [14.1](#14.1) <a name='14.1'></a> **Да.** Ставим в конце каждой инструкции.
+
+    eslint: [`semi`](http://eslint.org/docs/rules/semi.html) jscs: [`requireSemicolons`](http://jscs.info/rule/requireSemicolons)
+
 
     ```javascript
     // bad
@@ -1118,22 +947,18 @@
       const name = 'Skywalker';
       return name;
     }());
-
-    // good (guards against the function becoming an argument when two files with IIFEs are concatenated)
-    ;(() => {
-      const name = 'Skywalker';
-      return name;
-    }());
     ```
-
-    [Read more](http://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214%237365214).
 
 **[⬆ до оглавления](#Оглавление)**
 
+===============================================================================================================
+===============================================================================================================
+15
+
 ## Type Casting & Coercion TODO: сократить текст
 
-  - [21.1](#21.1) <a name='21.1'></a> Perform type coercion at the beginning of the statement.
-  - [21.2](#21.2) <a name='21.2'></a> Strings:
+- [21.1](#21.1) <a name='21.1'></a> Perform type coercion at the beginning of the statement.
+- [21.2](#21.2) <a name='21.2'></a> Strings:
 
     ```javascript
     // => this.reviewScore = 9;
@@ -1145,7 +970,7 @@
     const totalScore = String(this.reviewScore);
     ```
 
-  - [21.3](#21.3) <a name='21.3'></a> Numbers: Use `Number` for type casting and `parseInt` always with a radix for parsing strings. eslint: [`radix`](http://eslint.org/docs/rules/radix)
+- [21.3](#21.3) <a name='21.3'></a> Numbers: Use `Number` for type casting and `parseInt` always with a radix for parsing strings. eslint: [`radix`](http://eslint.org/docs/rules/radix)
 
     ```javascript
     const inputValue = '4';
@@ -1169,7 +994,7 @@
     const val = parseInt(inputValue, 10);
     ```
 
-  - [21.4](#21.4) <a name='21.4'></a> If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](http://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
+- [21.4](#21.4) <a name='21.4'></a> If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](http://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
 
     ```javascript
     // good
@@ -1181,7 +1006,7 @@
     const val = inputValue >> 0;
     ```
 
-  - [21.5](#21.5) <a name='21.5'></a> **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](http://es5.github.io/#x4.3.19), but bitshift operations always return a 32-bit integer ([source](http://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
+- [21.5](#21.5) <a name='21.5'></a> **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](http://es5.github.io/#x4.3.19), but bitshift operations always return a 32-bit integer ([source](http://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
 
     ```javascript
     2147483647 >> 0 //=> 2147483647
@@ -1208,7 +1033,7 @@
 
 ## Naming Conventions
 
-  - [22.1](#22.1) <a name='22.1'></a> Avoid single letter names. Be descriptive with your naming.
+- [22.1](#22.1) <a name='22.1'></a> Avoid single letter names. Be descriptive with your naming.
 
     ```javascript
     // bad
@@ -1222,7 +1047,7 @@
     }
     ```
 
-  - [22.2](#22.2) <a name='22.2'></a> Use camelCase when naming objects, functions, and instances. eslint: [`camelcase`](http://eslint.org/docs/rules/camelcase.html) jscs: [`requireCamelCaseOrUpperCaseIdentifiers`](http://jscs.info/rule/requireCamelCaseOrUpperCaseIdentifiers)
+- [22.2](#22.2) <a name='22.2'></a> Use camelCase when naming objects, functions, and instances. eslint: [`camelcase`](http://eslint.org/docs/rules/camelcase.html) jscs: [`requireCamelCaseOrUpperCaseIdentifiers`](http://jscs.info/rule/requireCamelCaseOrUpperCaseIdentifiers)
 
     ```javascript
     // bad
@@ -1235,7 +1060,7 @@
     function thisIsMyFunction() {}
     ```
 
-  - [22.3](#22.3) <a name='22.3'></a> Use PascalCase when naming constructors or classes. eslint: [`new-cap`](http://eslint.org/docs/rules/new-cap.html) jscs: [`requireCapitalizedConstructors`](http://jscs.info/rule/requireCapitalizedConstructors)
+- [22.3](#22.3) <a name='22.3'></a> Use PascalCase when naming constructors or classes. eslint: [`new-cap`](http://eslint.org/docs/rules/new-cap.html) jscs: [`requireCapitalizedConstructors`](http://jscs.info/rule/requireCapitalizedConstructors)
 
     ```javascript
     // bad
@@ -1259,7 +1084,7 @@
     });
     ```
 
-  - [22.4](#22.4) <a name='22.4'></a> Use a leading underscore `_` when naming private properties. eslint: [`no-underscore-dangle`](http://eslint.org/docs/rules/no-underscore-dangle.html) jscs: [`disallowDanglingUnderscores`](http://jscs.info/rule/disallowDanglingUnderscores)
+- [22.4](#22.4) <a name='22.4'></a> Use a leading underscore `_` when naming private properties. eslint: [`no-underscore-dangle`](http://eslint.org/docs/rules/no-underscore-dangle.html) jscs: [`disallowDanglingUnderscores`](http://jscs.info/rule/disallowDanglingUnderscores)
 
     ```javascript
     // bad
@@ -1270,7 +1095,7 @@
     this._firstName = 'Panda';
     ```
 
-  - [22.5](#22.5) <a name='22.5'></a> Don't save references to `this`. Use arrow functions or Function#bind. jscs: [`disallowNodeTypes`](http://jscs.info/rule/disallowNodeTypes)
+- [22.5](#22.5) <a name='22.5'></a> Don't save references to `this`. Use arrow functions or Function#bind. jscs: [`disallowNodeTypes`](http://jscs.info/rule/disallowNodeTypes)
 
     ```javascript
     // bad
@@ -1297,7 +1122,7 @@
     }
     ```
 
-  - [22.6](#22.6) <a name='22.6'></a> If your file exports a single class, your filename should be exactly the name of the class.
+- [22.6](#22.6) <a name='22.6'></a> If your file exports a single class, your filename should be exactly the name of the class.
 
     ```javascript
     // file contents
@@ -1317,7 +1142,7 @@
     import CheckBox from './CheckBox';
     ```
 
-  - [22.7](#22.7) <a name='22.7'></a> Use camelCase when you export-default a function. Your filename should be identical to your function's name.
+- [22.7](#22.7) <a name='22.7'></a> Use camelCase when you export-default a function. Your filename should be identical to your function's name.
 
     ```javascript
     function makeStyleGuide() {
@@ -1341,8 +1166,8 @@
 
 ## Accessors
 
-  - [23.1](#23.1) <a name='23.1'></a> Accessor functions for properties are not required.
-  - [23.2](#23.2) <a name='23.2'></a> If you do make accessor functions use getVal() and setVal('hello').
+- [23.1](#23.1) <a name='23.1'></a> Accessor functions for properties are not required.
+- [23.2](#23.2) <a name='23.2'></a> If you do make accessor functions use getVal() and setVal('hello').
 
     ```javascript
     // bad
@@ -1358,7 +1183,7 @@
     dragon.setAge(25);
     ```
 
-  - [23.3](#23.3) <a name='23.3'></a> If the property is a `boolean`, use `isVal()` or `hasVal()`.
+- [23.3](#23.3) <a name='23.3'></a> If the property is a `boolean`, use `isVal()` or `hasVal()`.
 
     ```javascript
     // bad
@@ -1372,7 +1197,7 @@
     }
     ```
 
-  - [23.4](#23.4) <a name='23.4'></a> It's okay to create get() and set() functions, but be consistent.
+- [23.4](#23.4) <a name='23.4'></a> It's okay to create get() and set() functions, but be consistent.
 
     ```javascript
     class Jedi {
@@ -1395,7 +1220,7 @@
 
 ## jQuery
 
-  - [25.1](#25.1) <a name='25.1'></a> Prefix jQuery object variables with a `$`. jscs: [`requireDollarBeforejQueryAssignment`](http://jscs.info/rule/requireDollarBeforejQueryAssignment)
+- [25.1](#25.1) <a name='25.1'></a> Prefix jQuery object variables with a `$`. jscs: [`requireDollarBeforejQueryAssignment`](http://jscs.info/rule/requireDollarBeforejQueryAssignment)
 
     ```javascript
     // bad
