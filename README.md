@@ -930,7 +930,7 @@
 
 ## Точки с запятой
 
-- [14.1](#14.1) <a name='14.1'></a> **Да.** Ставим в конце каждой инструкции.
+- [14.1](#14.1) <a name='14.1'></a> Ставим в конце каждой инструкции.
 
     eslint: [`semi`](http://eslint.org/docs/rules/semi.html) jscs: [`requireSemicolons`](http://jscs.info/rule/requireSemicolons)
 
@@ -951,89 +951,9 @@
 
 **[⬆ до оглавления](#Оглавление)**
 
-===============================================================================================================
-===============================================================================================================
-15
+## Соглашение об именовании
 
-## Type Casting & Coercion TODO: сократить текст
-
-- [21.1](#21.1) <a name='21.1'></a> Perform type coercion at the beginning of the statement.
-- [21.2](#21.2) <a name='21.2'></a> Strings:
-
-    ```javascript
-    // => this.reviewScore = 9;
-
-    // bad
-    const totalScore = this.reviewScore + '';
-
-    // good
-    const totalScore = String(this.reviewScore);
-    ```
-
-- [21.3](#21.3) <a name='21.3'></a> Numbers: Use `Number` for type casting and `parseInt` always with a radix for parsing strings. eslint: [`radix`](http://eslint.org/docs/rules/radix)
-
-    ```javascript
-    const inputValue = '4';
-
-    // bad
-    const val = new Number(inputValue);
-
-    // bad
-    const val = +inputValue;
-
-    // bad
-    const val = inputValue >> 0;
-
-    // bad
-    const val = parseInt(inputValue);
-
-    // good
-    const val = Number(inputValue);
-
-    // good
-    const val = parseInt(inputValue, 10);
-    ```
-
-- [21.4](#21.4) <a name='21.4'></a> If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](http://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
-
-    ```javascript
-    // good
-    /**
-     * parseInt was the reason my code was slow.
-     * Bitshifting the String to coerce it to a
-     * Number made it a lot faster.
-     */
-    const val = inputValue >> 0;
-    ```
-
-- [21.5](#21.5) <a name='21.5'></a> **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](http://es5.github.io/#x4.3.19), but bitshift operations always return a 32-bit integer ([source](http://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
-
-    ```javascript
-    2147483647 >> 0 //=> 2147483647
-    2147483648 >> 0 //=> -2147483648
-    2147483649 >> 0 //=> -2147483647
-    ```
-
-  - [21.6](#21.6) <a name='21.6'></a> Booleans:
-
-    ```javascript
-    const age = 0;
-
-    // bad
-    const hasAge = new Boolean(age);
-
-    // good
-    const hasAge = Boolean(age);
-
-    // good
-    const hasAge = !!age;
-    ```
-
-**[⬆ до оглавления](#Оглавление)**
-
-## Naming Conventions
-
-- [22.1](#22.1) <a name='22.1'></a> Avoid single letter names. Be descriptive with your naming.
+- [15.1](#15.1) <a name='15.1'></a> Избегайте однобуквенные имена. Имена должны давать представление о том, что это такое.
 
     ```javascript
     // bad
@@ -1047,7 +967,12 @@
     }
     ```
 
-- [22.2](#22.2) <a name='22.2'></a> Use camelCase when naming objects, functions, and instances. eslint: [`camelcase`](http://eslint.org/docs/rules/camelcase.html) jscs: [`requireCamelCaseOrUpperCaseIdentifiers`](http://jscs.info/rule/requireCamelCaseOrUpperCaseIdentifiers)
+- [15.2](#15.2) <a name='15.2'></a> Используйте `camelCase`, когда именуете объекты, функции и переменные.
+
+    eslint: [`camelcase`](http://eslint.org/docs/rules/camelcase.html) jscs: [`requireCamelCaseOrUpperCaseIdentifiers`](http://jscs.info/rule/requireCamelCaseOrUpperCaseIdentifiers)
+
+
+    > Все популярные библиотеки для `javascript` используют `camelCase`, чтобы не путаться и соблюдать единообразие, пишем  в `camelCase`. Исключением являются данные, которые передаются на сервер, там могут быть другие правила.
 
     ```javascript
     // bad
@@ -1060,7 +985,10 @@
     function thisIsMyFunction() {}
     ```
 
-- [22.3](#22.3) <a name='22.3'></a> Use PascalCase when naming constructors or classes. eslint: [`new-cap`](http://eslint.org/docs/rules/new-cap.html) jscs: [`requireCapitalizedConstructors`](http://jscs.info/rule/requireCapitalizedConstructors)
+- [15.3](#15.3) <a name='15.3'></a> Используйте `UpperCamelCase`, когда именуете классы или конструкторы классов.
+
+    eslint: [`new-cap`](http://eslint.org/docs/rules/new-cap.html) jscs: [`requireCapitalizedConstructors`](http://jscs.info/rule/requireCapitalizedConstructors)
+
 
     ```javascript
     // bad
@@ -1084,7 +1012,10 @@
     });
     ```
 
-- [22.4](#22.4) <a name='22.4'></a> Use a leading underscore `_` when naming private properties. eslint: [`no-underscore-dangle`](http://eslint.org/docs/rules/no-underscore-dangle.html) jscs: [`disallowDanglingUnderscores`](http://jscs.info/rule/disallowDanglingUnderscores)
+- [15.4](#15.4) <a name='15.4'></a> Используйте подчеркивание `_` в качестве префикса для именования приватных методов и переменных объекта.
+
+    eslint: [`no-underscore-dangle`](http://eslint.org/docs/rules/no-underscore-dangle.html) jscs: [`disallowDanglingUnderscores`](http://jscs.info/rule/disallowDanglingUnderscores)
+
 
     ```javascript
     // bad
@@ -1095,7 +1026,16 @@
     this._firstName = 'Panda';
     ```
 
-- [22.5](#22.5) <a name='22.5'></a> Don't save references to `this`. Use arrow functions or Function#bind. jscs: [`disallowNodeTypes`](http://jscs.info/rule/disallowNodeTypes)
+- [15.5](#15.5) <a name='15.5'></a> Можете использовать `CONSTANT_CASE` для именования констант.
+
+    ```javascript
+    const CAT_INIT_NUMBER_OF_LIVES = 9;
+    ```
+
+- [15.6](#15.6) <a name='15.6'></a> В `ES6` можно не сохранять ссылку на `this`. Используйте стрелочные функции или `Function#bind`.
+
+    jscs: [`disallowNodeTypes`](http://jscs.info/rule/disallowNodeTypes)
+
 
     ```javascript
     // bad
@@ -1120,117 +1060,6 @@
         console.log(this);
       };
     }
-    ```
-
-- [22.6](#22.6) <a name='22.6'></a> If your file exports a single class, your filename should be exactly the name of the class.
-
-    ```javascript
-    // file contents
-    class CheckBox {
-      // ...
-    }
-    export default CheckBox;
-
-    // in some other file
-    // bad
-    import CheckBox from './checkBox';
-
-    // bad
-    import CheckBox from './check_box';
-
-    // good
-    import CheckBox from './CheckBox';
-    ```
-
-- [22.7](#22.7) <a name='22.7'></a> Use camelCase when you export-default a function. Your filename should be identical to your function's name.
-
-    ```javascript
-    function makeStyleGuide() {
-    }
-
-    export default makeStyleGuide;
-    ```
-
-  - [22.8](#22.8) <a name='22.8'></a> Use PascalCase when you export a singleton / function library / bare object.
-
-    ```javascript
-    const AirbnbStyleGuide = {
-      es6: {
-      }
-    };
-
-    export default AirbnbStyleGuide;
-    ```
-
-**[⬆ до оглавления](#Оглавление)**
-
-## Accessors
-
-- [23.1](#23.1) <a name='23.1'></a> Accessor functions for properties are not required.
-- [23.2](#23.2) <a name='23.2'></a> If you do make accessor functions use getVal() and setVal('hello').
-
-    ```javascript
-    // bad
-    dragon.age();
-
-    // good
-    dragon.getAge();
-
-    // bad
-    dragon.age(25);
-
-    // good
-    dragon.setAge(25);
-    ```
-
-- [23.3](#23.3) <a name='23.3'></a> If the property is a `boolean`, use `isVal()` or `hasVal()`.
-
-    ```javascript
-    // bad
-    if (!dragon.age()) {
-      return false;
-    }
-
-    // good
-    if (!dragon.hasAge()) {
-      return false;
-    }
-    ```
-
-- [23.4](#23.4) <a name='23.4'></a> It's okay to create get() and set() functions, but be consistent.
-
-    ```javascript
-    class Jedi {
-      constructor(options = {}) {
-        const lightsaber = options.lightsaber || 'blue';
-        this.set('lightsaber', lightsaber);
-      }
-
-      set(key, val) {
-        this[key] = val;
-      }
-
-      get(key) {
-        return this[key];
-      }
-    }
-    ```
-
-**[⬆ до оглавления](#Оглавление)**
-
-## jQuery
-
-- [25.1](#25.1) <a name='25.1'></a> Prefix jQuery object variables with a `$`. jscs: [`requireDollarBeforejQueryAssignment`](http://jscs.info/rule/requireDollarBeforejQueryAssignment)
-
-    ```javascript
-    // bad
-    const sidebar = $('.sidebar');
-
-    // good
-    const $sidebar = $('.sidebar');
-
-    // good
-    const $sidebarBtn = $('.sidebar-btn');
     ```
 
 **[⬆ до оглавления](#Оглавление)**
