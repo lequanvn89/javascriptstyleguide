@@ -671,9 +671,7 @@
     // @param {String} tag
     // @return {Element} element
     function make(tag) {
-
       // ...stuff...
-
       return element;
     }
 
@@ -683,9 +681,7 @@
      * based on the passed in tag name
      */
     function make(tag) {
-
       // ...stuff...
-
       return element;
     }
 
@@ -698,9 +694,7 @@
      * @return {Element} element
      */
     function make(tag) {
-
       // ...stuff...
-
       return element;
     }
     ```
