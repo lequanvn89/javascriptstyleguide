@@ -317,12 +317,16 @@
     eslint: [`quotes`](http://eslint.org/docs/rules/quotes.html) jscs: [`validateQuoteMarks`](http://jscs.info/rule/validateQuoteMarks)
 
 
+    > В текстах внутри строки часто встречаются `"`, обрамляя строки в `''` упрощаем себе жизнь.
+
     ```javascript
     // bad
     const name = "James Bond. James.";
+    const hello = "Say \"Hello world\"";
 
     // good
     const name = 'James. James Bond.';
+    const hello = 'Say "Hello world"';
     ```
 
 - [5.2](#5.2) <a name='5.2'></a> Используйте конкатенацию для переноса длинных строк.
