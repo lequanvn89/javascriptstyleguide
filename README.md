@@ -5,21 +5,21 @@
 
 ## Оглавление
 
-  1. [Переменные](#Переменные)
-  1. [Объекты](#Объекты)
-  1. [Массивы](#Массивы)
-  1. [Деструктурирование](#Деструктурирование)
-  1. [Строки](#Строки)
-  1. [Функции](#Функции)
-  1. [Стрелочные функции](#Стрелочные-функции)
-  1. [Импорты](#Импорты)
-  1. [Операторы равенства и идентичности](#Операторы-равенства-и-идентичности)
-  1. [Блоки кода](#Блоки-кода)
-  1. [Комментарии](#Комментарии)
-  1. [Табы и пробелы](#Табы-и-пробелы)
-  1. [Запятые](#Запятые)
-  1. [Точки с запятой](#Точки-с-запятой)
-  1. [Соглашение об именовании](#Соглашение-об-именовании)
+1. [Переменные](#Переменные)
+1. [Объекты](#Объекты)
+1. [Массивы](#Массивы)
+1. [Деструктурирование](#Деструктурирование)
+1. [Строки](#Строки)
+1. [Функции](#Функции)
+1. [Стрелочные функции](#Стрелочные-функции)
+1. [Импорты](#Импорты)
+1. [Операторы равенства и идентичности](#Операторы-равенства-и-идентичности)
+1. [Блоки кода](#Блоки-кода)
+1. [Комментарии](#Комментарии)
+1. [Табы и пробелы](#Табы-и-пробелы)
+1. [Запятые](#Запятые)
+1. [Точки с запятой](#Точки-с-запятой)
+1. [Соглашение об именовании](#Соглашение-об-именовании)
   
 ## Переменные
 
@@ -40,7 +40,7 @@
     var count = 0;
     
     if (true) {
-      count += 1;
+        count += 1;
     }
     
     // good
@@ -49,7 +49,7 @@
     let count = 0;
     
     if (true) {
-      count += 1;
+        count += 1;
     }
     ```
 
@@ -58,8 +58,8 @@
     ```javascript
     // const and let only exist in the blocks they are defined in.
     {
-      let a = 1;
-      const b = 1;
+        let a = 1;
+        const b = 1;
     }
     console.log(a); // ReferenceError
     console.log(b); // ReferenceError
@@ -100,18 +100,18 @@
     ```javascript
     // bad
     const item = {
-      value: 1,
-      addValue: function (value) {
-        return this.value + value;
-      },
+        value: 1,
+        addValue: function (value) {
+            return this.value + value;
+        },
     };
 
     // good
     const item = {
-      value: 1,
-      addValue(value) {
-        return this.value + value;
-      },
+        value: 1,
+        addValue(value) {
+            return this.value + value;
+        },
     };
     ```
 
@@ -125,12 +125,12 @@
 
     // bad
     const item = {
-      name: name,
+        name: name,
     };
 
     // good
     const item = {
-      name,
+        name,
     };
     ```
 
@@ -144,18 +144,18 @@
 
     // bad
     const item = {
-      index: 1,
-      name,
-      type: 'new',
-      link
+        index: 1,
+        name,
+        type: 'new',
+        link
     };
 
     // good
     const item = {
-      name,
-      link,
-      index: 1,
-      type: 'new'
+        name,
+        link,
+        index: 1,
+        type: 'new'
     };
     ```
 
@@ -163,30 +163,32 @@
 
     eslint: [`quote-props`](http://eslint.org/docs/rules/quote-props.html) jscs: [`disallowQuotedKeysInObjects`](http://jscs.info/rule/disallowQuotedKeysInObjects)
 
-  ```javascript
-  // bad
-  const bad = {
-    'foo': 3,
-    'bar': 4,
-    'foo-bar': 5,
-  };
 
-  // good
-  const good = {
-    foo: 3,
-    bar: 4,
-    'foo-bar': 5,
-  };
-  ```
+    ```javascript
+    // bad
+    const bad = {
+        'foo': 3,
+        'bar': 4,
+        'foo-bar': 5,
+    };
+
+    // good
+    const good = {
+        foo: 3,
+        bar: 4,
+        'foo-bar': 5,
+    };
+    ```
 
 - [2.5](#2.5) <a name='2.5'></a> Используйте точечную нотацию для доступа к свойствам объекта.
 
     eslint: [`dot-notation`](http://eslint.org/docs/rules/dot-notation.html) jscs: [`requireDotNotation`](http://jscs.info/rule/requireDotNotation)
 
+
     ```javascript
     const item = {
-      foo: true,
-      bar: 28,
+        foo: true,
+        bar: 28,
     };
 
     // bad
@@ -200,12 +202,12 @@
 
     ```javascript
     const item = {
-      foo: true,
-      bar: 28,
+        foo: true,
+        bar: 28,
     };
 
     function getProp(prop) {
-      return item[prop];
+        return item[prop];
     }
 
     const hasFoo = getProp('foo');
@@ -237,7 +239,7 @@
     let i;
 
     for (i = 0; i < len; i++) {
-      itemsCopy[i] = items[i];
+        itemsCopy[i] = items[i];
     }
 
     // good
@@ -256,15 +258,15 @@
     ```javascript
     // bad
     function getFullName(user) {
-      const firstName = user.firstName;
-      const lastName = user.lastName;
+        const firstName = user.firstName;
+        const lastName = user.lastName;
 
-      return `${firstName} ${lastName}`;
+        return `${firstName} ${lastName}`;
     }
 
     // good
     function getFullName({ firstName, lastName }) {
-      return `${firstName} ${lastName}`;
+        return `${firstName} ${lastName}`;
     }
     ```
 
@@ -293,8 +295,8 @@
     ```javascript
     // bad
     function processInput(input) {
-      // calculating...
-      return [left, right, top, bottom];
+        // calculating...
+        return [left, right, top, bottom];
     }
 
     // the caller needs to think about the order of return data
@@ -302,8 +304,8 @@
 
     // good
     function processInput(input) {
-      // calculating...
-      return { left, right, top, bottom };
+        // calculating...
+        return { left, right, top, bottom };
     }
 
     // the caller selects only the data they need
@@ -347,8 +349,8 @@
 
     // good
     const errorMessage = 'This is a super long error that was thrown because ' +
-      'of Batman. When you stop to think about how Batman had anything to do ' +
-      'with this, you would get nowhere fast.';
+        'of Batman. When you stop to think about how Batman had anything to do ' +
+        'with this, you would get nowhere fast.';
     ```
 
 - [5.3](#5.3) <a name='5.3'></a> Используйте литералы шаблонов ``, вместо конкатенации, когда программно строите строки.
@@ -361,28 +363,28 @@
     ```javascript
     // bad
     function sayHi(name) {
-      return 'How are you, ' + name + '?';
+        return 'How are you, ' + name + '?';
     }
 
     // bad
     function sayHi(name) {
-      return ['How are you, ', name, '?'].join();
+        return ['How are you, ', name, '?'].join();
     }
 
     // good
     function sayHi(name) {
-      return `How are you, ${name}?`;
+        return `How are you, ${name}?`;
     }
 
     // bad
     const errorMessage = 'This is a super long error that was thrown because \n' +
-      'of Batman. When you stop to think about how Batman had anything to do \n' +
-      'with this, you would get nowhere fast.';
+        'of Batman. When you stop to think about how Batman had anything to do \n' +
+        'with this, you would get nowhere fast.';
 
     // good
     const errorMessage = `This is a super long error that was thrown because 
-      of Batman. When you stop to think about how Batman had anything to do 
-      with this, you would get nowhere fast.`;
+        of Batman. When you stop to think about how Batman had anything to do 
+        with this, you would get nowhere fast.`;
     ```
 
 **[⬆ к оглавлению](#Оглавление)**
@@ -418,25 +420,25 @@
     ```javascript
     // really bad
     function handleThings(opts) {
-      // No! We shouldn't mutate function arguments.
-      // Double bad: if opts is falsy it'll be set to an object which may
-      // be what you want but it can introduce subtle bugs.
-      opts = opts || {};
-      // ...
+        // No! We shouldn't mutate function arguments.
+        // Double bad: if opts is falsy it'll be set to an object which may
+        // be what you want but it can introduce subtle bugs.
+        opts = opts || {};
+        // ...
     }
 
     // still bad
     function handleThings(opts) {
-      // if opts is undefined, then opts = {}
-      if (opts === void 0) {
-        opts = {};
-      }
-      // ...
+        // if opts is undefined, then opts = {}
+        if (opts === void 0) {
+            opts = {};
+        }
+        // ...
     }
 
     // good
     function handleThings(opts = {}) {
-      // ...
+        // ...
     }
     ```
 
@@ -445,12 +447,12 @@
     ```javascript
     // bad
     function handleThings(opts = {}, name) {
-      // ...
+        // ...
     }
 
     // good
     function handleThings(name, opts = {}) {
-      // ...
+        // ...
     }
     ```
 
@@ -458,9 +460,9 @@
 
     ```javascript
     var b = 1;
-    // bad
+    // very bad
     function count(a = b++) {
-      console.log(a);
+        console.log(a);
     }
     count();  // 1
     count();  // 2
@@ -499,14 +501,14 @@
     ```javascript
     // bad
     [1, 2, 3].map(function (x) {
-      const y = x + 1;
-      return x * y;
+        const y = x + 1;
+        return x * y;
     });
 
     // good
     [1, 2, 3].map((x) => {
-      const y = x + 1;
-      return x * y;
+        const y = x + 1;
+        return x * y;
     });
     ```
 
@@ -515,41 +517,43 @@
     [7.2.1](#7.2.1) <a name='7.2.1'></a> Однострочная функция — используется неявный `return`.
 
 
-      > Если у функции всего один аргумент, то можно опустить фигурные скобки. Но для единообразия рекомендуется всегда ставить фигурные скобки вокруг аргументов.
+        > Если у функции всего один аргумент, то можно опустить фигурные скобки. Но для единообразия рекомендуется всегда ставить фигурные скобки вокруг аргументов.
 
-      ```javascript
-      // not recommended
-      [1, 2, 3].map(number => `A string containing the ${number}.`);
+        ```javascript
+        // not recommended
+        [1, 2, 3].map(number => `A string containing the ${number}.`);
       
-      // one argument
-      [1, 2, 3].map((number) => `A string containing the ${number}.`);
+        // one argument
+        [1, 2, 3].map((number) => `A string containing the ${number}.`);
       
-      // to return object include parentheses around it
-      [1, 2, 3].map((number, index) => ({num: number, index: index}));
+        // to return object include parentheses around it
+        [1, 2, 3].map((number, index) => ({num: number, index: index}));
       
-      // no argument
-      [1, 2, 3].map(() => 'No argument');
-      ```
+        // no argument
+        [1, 2, 3].map(() => 'No argument');
+        ```
 
 
     [7.2.2](#7.2.2) <a name='7.2.2'></a> Если выражение не помещается в одну строку, то обрамляем его в круглые скобки.
-      
-      ```javascript
-      [1, 2, 3].map(number => (
-        `As time went by, the string containing the ${number} became much ` +
-        'longer. So we needed to break it over multiple lines.'
-      ));
-      ```
+
+
+        ```javascript
+        [1, 2, 3].map(number => (
+            `As time went by, the string containing the ${number} became much ` +
+            'longer. So we needed to break it over multiple lines.'
+        ));
+        ```
 
 
     [7.2.3](#7.2.3) <a name='7.2.3'></a> Многострочная функция — блок кода обрамляется в фигурные скобки, используется явный `return`.
-      
-      ```javascript
-      [1, 2, 3].map((number) => {
-        const nextNumber = number + 1;
-        return `A string containing the ${nextNumber}.`;
-      });
-      ```
+
+
+        ```javascript
+        [1, 2, 3].map((number) => {
+            const nextNumber = number + 1;
+            return `A string containing the ${nextNumber}.`;
+        });
+        ```
 
 **[⬆ к оглавлению](#Оглавление)**
 
@@ -603,8 +607,8 @@
 
     ```javascript
     if ([0] && []) {
-      // true
-      // an array (even an empty one) is an object, objects will evaluate to true
+        // true
+        // an array (even an empty one) is an object, objects will evaluate to true
     }
     ```
 
@@ -613,22 +617,22 @@
     ```javascript
     // bad
     if (name !== '') {
-      // ...stuff...
+        // ...stuff...
     }
 
     // good
     if (name) {
-      // ...stuff...
+        // ...stuff...
     }
 
     // bad
     if (collection.length > 0) {
-      // ...stuff...
+        // ...stuff...
     }
 
     // good
     if (collection.length) {
-      // ...stuff...
+        // ...stuff...
     }
     ```
 
@@ -641,14 +645,14 @@
     ```javascript
     // bad
     if (test)
-      return false;
+        return false;
 
     // good
     if (test) return false;
 
     // good
     if (test) {
-      return false;
+        return false;
     }
 
     // bad
@@ -656,7 +660,7 @@
 
     // good
     function bar() {
-      return false;
+        return false;
     }
     ```
 
@@ -674,8 +678,8 @@
     // @param {String} tag
     // @return {Element} element
     function make(tag) {
-      // ...stuff...
-      return element;
+        // ...stuff...
+        return element;
     }
 
     // good
@@ -684,8 +688,8 @@
      * based on the passed in tag name
      */
     function make(tag) {
-      // ...stuff...
-      return element;
+        // ...stuff...
+        return element;
     }
 
     // jsdoc format
@@ -697,8 +701,8 @@
      * @return {Element} element
      */
     function make(tag) {
-      // ...stuff...
-      return element;
+        // ...stuff...
+        return element;
     }
     ```
 
@@ -714,21 +718,21 @@
 
     // good
     function getType() {
-      console.log('fetching type...');
+        console.log('fetching type...');
 
-      // set the default type to 'no type'
-      const type = this._type || 'no type';
+        // set the default type to 'no type'
+        const type = this._type || 'no type';
       
-      return type;
+        return type;
     }
 
     // also good
     function getType() {
-      console.log('fetching type...');
-      // set the default type to 'no type'
-      const type = this._type || 'no type';
+        console.log('fetching type...');
+        // set the default type to 'no type'
+        const type = this._type || 'no type';
       
-      return type;
+        return type;
     }
     ```
 
@@ -763,24 +767,24 @@
     ```javascript
     // bad
     function test(){
-      console.log('test');
+        console.log('test');
     }
 
     // good
     function test() {
-      console.log('test');
+        console.log('test');
     }
 
     // bad
     dog.set('attr',{
-      age: '1 year',
-      breed: 'Bernese Mountain Dog',
+        age: '1 year',
+        breed: 'Bernese Mountain Dog',
     });
 
     // good
     dog.set('attr', {
-      age: '1 year',
-      breed: 'Bernese Mountain Dog',
+        age: '1 year',
+        breed: 'Bernese Mountain Dog',
     });
     ```
 
@@ -792,12 +796,12 @@
     ```javascript
     // bad
     if(isJedi) {
-      fight ();
+        fight ();
     }
 
     // good
     if (isJedi) {
-      fight();
+        fight();
     }
     ```
 
@@ -827,16 +831,16 @@
 
     // good
     const foo = 'Whatever national crop flips the window. The cartoon reverts within the screw. ' +
-      'Whatever wizard constrains a helpful ally. The counterpart ascends!';
+        'Whatever wizard constrains a helpful ally. The counterpart ascends!';
 
     // good
     $.ajax({
-      method: 'POST',
-      url: 'https://airbnb.com/',
-      data: { name: 'John' },
+        method: 'POST',
+        url: 'https://airbnb.com/',
+        data: { name: 'John' },
     })
-      .done(() => console.log('Congratulations!'))
-      .fail(() => console.log('You have failed this city.'));
+        .done(() => console.log('Congratulations!'))
+        .fail(() => console.log('You have failed this city.'));
     ```
 
 **[⬆ к оглавлению](#Оглавление)**
@@ -851,32 +855,32 @@
     ```javascript
     // bad
     const story = [
-        once
-      , upon
-      , aTime
+          once
+        , upon
+        , aTime
     ];
 
     // good
     const story = [
-      once,
-      upon,
-      aTime,
+        once,
+        upon,
+        aTime,
     ];
 
     // bad
     const hero = {
-        firstName: 'Ada'
-      , lastName: 'Lovelace'
-      , birthYear: 1815
-      , superPower: 'computers'
+          firstName: 'Ada'
+        , lastName: 'Lovelace'
+        , birthYear: 1815
+        , superPower: 'computers'
     };
 
     // good
     const hero = {
-      firstName: 'Ada',
-      lastName: 'Lovelace',
-      birthYear: 1815,
-      superPower: 'computers',
+        firstName: 'Ada',
+        lastName: 'Lovelace',
+        birthYear: 1815,
+        superPower: 'computers',
     };
     ```
 
@@ -894,39 +898,39 @@
     ```javascript
     // bad - diff without trailing comma
     const hero = {
-         firstName: 'Florence',
-    -    lastName: 'Nightingale'
-    +    lastName: 'Nightingale',
-    +    inventorOf: ['coxcomb graph', 'modern nursing']
+        firstName: 'Florence',
+    -   lastName: 'Nightingale'
+    +   lastName: 'Nightingale',
+    +   inventorOf: ['coxcomb graph', 'modern nursing']
     };
 
     // good - diff with trailing comma
     const hero = {
-         firstName: 'Florence',
-         lastName: 'Nightingale',
-    +    inventorOf: ['coxcomb chart', 'modern nursing'],
+        firstName: 'Florence',
+        lastName: 'Nightingale',
+    +   inventorOf: ['coxcomb chart', 'modern nursing'],
     };
 
     // bad
     const hero = {
-      firstName: 'Dana',
-      lastName: 'Scully'
+        firstName: 'Dana',
+        lastName: 'Scully'
     };
 
     const heroes = [
-      'Batman',
-      'Superman'
+        'Batman',
+        'Superman'
     ];
 
     // good
     const hero = {
-      firstName: 'Dana',
-      lastName: 'Scully',
+        firstName: 'Dana',
+        lastName: 'Scully',
     };
 
     const heroes = [
-      'Batman',
-      'Superman',
+        'Batman',
+        'Superman',
     ];
     ```
 
@@ -942,14 +946,14 @@
     ```javascript
     // bad
     (function () {
-      const name = 'Skywalker'
-      return name
+        const name = 'Skywalker'
+        return name
     })()
 
     // good
     (() => {
-      const name = 'Skywalker';
-      return name;
+        const name = 'Skywalker';
+        return name;
     }());
     ```
 
@@ -962,12 +966,12 @@
     ```javascript
     // bad
     function q() {
-      // ...stuff...
+        // ...stuff...
     }
 
     // good
     function query() {
-      // ..stuff..
+        // ..stuff..
     }
     ```
 
@@ -997,22 +1001,22 @@
     ```javascript
     // bad
     function user(options) {
-      this.name = options.name;
+        this.name = options.name;
     }
 
     const bad = new user({
-      name: 'nope',
+        name: 'nope',
     });
 
     // good
     class User {
-      constructor(options) {
-        this.name = options.name;
-      }
+        constructor(options) {
+            this.name = options.name;
+        }
     }
 
     const good = new User({
-      name: 'yup',
+        name: 'yup',
     });
     ```
 
@@ -1044,25 +1048,25 @@
     ```javascript
     // bad
     function foo() {
-      const self = this;
-      return function () {
-        console.log(self);
-      };
+        const self = this;
+        return function () {
+            console.log(self);
+        };
     }
 
     // bad
     function foo() {
-      const that = this;
-      return function () {
-        console.log(that);
-      };
+        const that = this;
+        return function () {
+            console.log(that);
+        };
     }
 
     // good
     function foo() {
-      return () => {
-        console.log(this);
-      };
+        return () => {
+            console.log(this);
+        };
     }
     ```
 
@@ -1072,10 +1076,10 @@
 
     ```javascript
     function() {
-      const _this = this;
-      return function() {
-        console.log(_this);
-      };
+        const _this = this;
+        return function() {
+            console.log(_this);
+        };
     }
     ```
     
