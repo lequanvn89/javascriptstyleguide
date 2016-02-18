@@ -1029,8 +1029,6 @@
 
 - [15.6](#15.6) <a name='15.6'></a> В `ES6` можно не сохранять ссылку на `this`. Используйте стрелочные функции или `Function#bind`.
 
-    Жить не можете без ссылки на `this`? Используйте тогда `_this`. 
-
     jscs: [`disallowNodeTypes`](http://jscs.info/rule/disallowNodeTypes)
 
 
@@ -1059,4 +1057,17 @@
     }
     ```
 
+
+    Жить не можете без ссылки на `this`? Используйте тогда `_this`.
+
+
+    ```javascript
+    function() {
+      const _this = this;
+      return function() {
+        console.log(_this);
+      };
+    }
+    ```
+    
 **[⬆ до оглавления](#Оглавление)**
