@@ -180,6 +180,7 @@
   ```
 
 - [2.5](#2.5) <a name='2.5'></a> Используйте точечную нотацию для доступа к свойствам объекта.
+
     eslint: [`dot-notation`](http://eslint.org/docs/rules/dot-notation.html) jscs: [`requireDotNotation`](http://jscs.info/rule/requireDotNotation)
 
     ```javascript
