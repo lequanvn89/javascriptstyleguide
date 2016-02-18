@@ -517,21 +517,21 @@
     [7.2.1](#7.2.1) <a name='7.2.1'></a> Однострочная функция — используется неявный `return`.
 
 
-        > Если у функции всего один аргумент, то можно опустить фигурные скобки. Но для единообразия рекомендуется всегда ставить фигурные скобки вокруг аргументов.
+    > Если у функции всего один аргумент, то можно опустить фигурные скобки. Но для единообразия рекомендуется всегда ставить фигурные скобки вокруг аргументов.
 
-        ```javascript
-        // not recommended
-        [1, 2, 3].map(number => `A string containing the ${number}.`);
-      
-        // one argument
-        [1, 2, 3].map((number) => `A string containing the ${number}.`);
-      
-        // to return object include parentheses around it
-        [1, 2, 3].map((number, index) => ({num: number, index: index}));
-      
-        // no argument
-        [1, 2, 3].map(() => 'No argument');
-        ```
+    ```javascript
+    // not recommended
+    [1, 2, 3].map(number => `A string containing the ${number}.`);
+  
+    // one argument
+    [1, 2, 3].map((number) => `A string containing the ${number}.`);
+  
+    // to return object include parentheses around it
+    [1, 2, 3].map((number, index) => ({num: number, index: index}));
+  
+    // no argument
+    [1, 2, 3].map(() => 'No argument');
+    ```
 
 
     [7.2.2](#7.2.2) <a name='7.2.2'></a> Если выражение не помещается в одну строку, то обрамляем его в круглые скобки.
