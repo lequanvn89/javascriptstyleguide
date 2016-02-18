@@ -273,15 +273,16 @@
 
 
     ```javascript
-    const arr = [1, 2, 3, 4, 5];
+    const arr = [1, 2, 3, 4, 5, 6, 7];
 
     // bad
-    const first = arr[0];
-    const second = arr[1];
-    const fourth = arr[3];
+    const first = arr[0];      // 1
+    const second = arr[1];     // 2
+    const fourth = arr[3];     // 4
+    const rest = arr.slice(4); // 5, 6, 7
 
     // good
-    const [first, second, , fourth] = arr;
+    const [first, second, , fourth, ...rest] = arr;
     ```
 
 - [4.3](#4.3) <a name='4.3'></a> Множество значений возвращайте в виде объекта, чтобы потом использовать деструктуризацию объекта. Это удобней чем возвращать массив.
