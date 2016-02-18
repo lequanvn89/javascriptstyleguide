@@ -1,5 +1,5 @@
-# JavaScript (ES6) style guide
-Пишем JavaScript (ES6) красиво.
+# JavaScript style guide (ES6)
+Пишем JavaScript красиво.
 
 За основу взята статья ["Airbnb - JavaScript style guide"](https://github.com/airbnb/javascript). Убрано лишнее, нужные моменты переосмысленны и переведены, добавлено некоторые мои видения.
 
