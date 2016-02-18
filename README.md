@@ -484,13 +484,12 @@
 
 ## Стрелочные функции
 
-- [7.1](#7.1) <a name='7.1'></a> Когда нужно использовать функциональный литерал (передача анонимной функции как параметр функции), то используйте стрелочные функции.
+- [7.1](#7.1) <a name='7.1'></a> Когда нужно использовать функциональный литерал (например, передача анонимной функции как параметр другой функции), то используйте стрелочные функции.
 
     eslint: [`prefer-arrow-callback`](http://eslint.org/docs/rules/prefer-arrow-callback.html), [`arrow-spacing`](http://eslint.org/docs/rules/arrow-spacing.html) jscs: [`requireArrowFunctions`](http://jscs.info/rule/requireArrowFunctions)
 
 
     > Создается функция, которая будет выполняться в контексте текущего `this`, а это то, что нам нужно в большинстве случаях.
-
     > Но если у вас очень сложная функция, то можете вынести эту логику и объявить отдельную функцию.
 
     ```javascript
@@ -576,7 +575,7 @@
     eslint: [`eqeqeq`](http://eslint.org/docs/rules/eqeqeq.html)
 
 
-    > При сравнивании неявно выполняется приведение типов переменных. Чтобы избежать этой путаницы всегда используйте операторы `===` и `!==`, которые сравнивают и значения и типы выражений.
+    > При сравнивании неявно выполняется приведение типов переменных. Чтобы избежать этой путаницы всегда используйте операторы `===` и `!==`, которые сравнивают и значения, и типы выражений.
 
     ```javascript
     // bad
@@ -594,7 +593,7 @@
     + **Undefined** соответствует **false**
     + **Null** соответствует **false**
     + **Booleans** не меняется
-    + **Numbers** соответствует **false** если является **+0, -0, или NaN**, иначе **true**
+    + **Numbers** соответствует **false** если является **+0, 0, -0 или NaN**, иначе **true**
     + **Strings** соответствует **false** если это пустая строка `''`, иначе **true**
 
 
@@ -703,30 +702,22 @@
     // is current tab
     const active = true;
 
-    // bad
-    function getType() {
-      console.log('fetching type...');
-      // set the default type to 'no type'
-      const type = this._type || 'no type';
-
-      return type;
-    }
-
     // good
     function getType() {
       console.log('fetching type...');
 
       // set the default type to 'no type'
       const type = this._type || 'no type';
-
+      
       return type;
     }
 
     // also good
     function getType() {
+      console.log('fetching type...');
       // set the default type to 'no type'
       const type = this._type || 'no type';
-
+      
       return type;
     }
     ```
@@ -735,7 +726,7 @@
 
 ## Табы и пробелы
 
-- [12.1](#12.1) <a name='12.1'></a> Используйте программную табуляцию из 4 пробелов (нажимая `Tab` редактор проставляет 4 пробела).
+- [12.1](#12.1) <a name='12.1'></a> Используйте программную табуляцию из 4 пробелов (делая `Tab` редактор подставит 4 пробела).
 
     ```javascript
     // bad
@@ -754,7 +745,7 @@
     }
     ```
 
-- [18.2](#18.2) <a name='18.2'></a> Поставьте один пробел перед открывающей фигурной скобкой.
+- [12.2](#12.2) <a name='12.2'></a> Поставьте один пробел перед открывающей фигурной скобкой.
 
     eslint: [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks.html) jscs: [`requireSpaceBeforeBlockStatements`](http://jscs.info/rule/requireSpaceBeforeBlockStatements)
 
@@ -879,12 +870,14 @@
     };
     ```
 
-- [13.2](#13.2) <a name='13.2'></a> Есть возможность ставить дополнительные запятые в конце объектов и массивов.
+- [13.2](#13.2) <a name='13.2'></a> Можно ставить дополнительные запятые в конце объектов и массивов.
 
     eslint: [`comma-dangle`](http://eslint.org/docs/rules/comma-dangle.html) jscs: [`requireTrailingComma`](http://jscs.info/rule/requireTrailingComma)
 
 
-    > Это улучшит `diff`'ы, меняется одна строка, а не две. Удобней добавлять свойства и элементы, не нужно беспокоиться есть или нет запятые, потому что они всегда есть. Babel при транскомпиляции игнорирует эти запятые, поэтому можно не беспокоиться об [trailing comma problem](es5/README.md#commas) старых браузерах.
+    > Это улучшит `diff`'ы, меняется одна строка, а не две. Удобней добавлять свойства и элементы, не нужно беспокоиться есть или нет запятые, потому что они всегда есть. 
+    > Если вы используете Babel: Babel при транскомпиляции игнорирует эти запятые, поэтому можно не беспокоиться об [trailing comma problem](http://stackoverflow.com/questions/7246618/trailing-commas-in-javascript). 
+    > Если вы не используете Babel: современные браузеры, такие как `Chrome`, `Firefox` адекватно обрабатывают запятые в конце списка. Проблемы появляются только в браузерах `IE` (ниже 9 версии), так что тестируйте и будьте аккуратны.
 
     ```javascript
     // bad - diff without trailing comma
