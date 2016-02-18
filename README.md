@@ -509,44 +509,46 @@
 
 - [7.2](#7.2) <a name='7.2'></a> Разный синтаксис стрелочной функции. 
 
-    [7.2.1](#7.2.1) <a name='7.2.1'></a> Однострочная функция, опускаются фигурные скобки и используется неявный `return`.
+    [7.2.1](#7.2.1) <a name='7.2.1'></a> Однострочная функция — используется неявный `return`.
 
 
-    ```javascript
-    // one argument
-    [1, 2, 3].map(number => `A string containing the ${number}.`);
-    
-    // to return object include parentheses around it
-    [1, 2, 3].map(number => ({num: number, foo: 'bar'}));
-    
-    // no argument, use parentheses
-    [1, 2, 3].map(() => 'No argument');
-    
-    // two or more arguments, use parentheses
-    [1, 2, 3].map((number, index) => 'Two or more arguments');
-    ```
+      > Если аргументов всего один, то можно опустить фигурные скобки. Но для единообразия рекомендуется всегда ставить фигурные скобки вокруг аргументов.
+
+      ```javascript
+      // not recommended
+      [1, 2, 3].map(number => `A string containing the ${number}.`);
+      
+      // one argument
+      [1, 2, 3].map((number) => `A string containing the ${number}.`);
+      
+      // to return object include parentheses around it
+      [1, 2, 3].map((number, index) => ({num: number, index: index}));
+      
+      // no argument
+      [1, 2, 3].map(() => 'No argument');
+      ```
 
 
     [7.2.2](#7.2.2) <a name='7.2.2'></a> Если выражение не помещается в одну строку, то обрамляем его в круглые скобки.
 
 
-    ```javascript
-    [1, 2, 3].map(number => (
-      `As time went by, the string containing the ${number} became much ` +
-      'longer. So we needed to break it over multiple lines.'
-    ));
-    ```
+      ```javascript
+      [1, 2, 3].map(number => (
+        `As time went by, the string containing the ${number} became much ` +
+        'longer. So we needed to break it over multiple lines.'
+      ));
+      ```
 
 
     [7.2.3](#7.2.3) <a name='7.2.3'></a> Многострочная функция, используется круглые скобки для аргументов, фигурные скобки для блок кода и явный `return`.
 
 
-    ```javascript
-    [1, 2, 3].map((number) => {
-      const nextNumber = number + 1;
-      return `A string containing the ${nextNumber}.`;
-    });
-    ```
+      ```javascript
+      [1, 2, 3].map((number) => {
+        const nextNumber = number + 1;
+        return `A string containing the ${nextNumber}.`;
+      });
+      ```
 
 **[⬆ к оглавлению](#Оглавление)**
 
