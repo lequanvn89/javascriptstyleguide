@@ -537,23 +537,23 @@
     [7.2.2](#7.2.2) <a name='7.2.2'></a> Если выражение не помещается в одну строку, то обрамляем его в круглые скобки.
 
 
-        ```javascript
-        [1, 2, 3].map(number => (
-            `As time went by, the string containing the ${number} became much ` +
-            'longer. So we needed to break it over multiple lines.'
-        ));
-        ```
+    ```javascript
+    [1, 2, 3].map(number => (
+        `As time went by, the string containing the ${number} became much ` +
+        'longer. So we needed to break it over multiple lines.'
+    ));
+    ```
 
 
     [7.2.3](#7.2.3) <a name='7.2.3'></a> Многострочная функция — блок кода обрамляется в фигурные скобки, используется явный `return`.
 
 
-        ```javascript
-        [1, 2, 3].map((number) => {
-            const nextNumber = number + 1;
-            return `A string containing the ${nextNumber}.`;
-        });
-        ```
+    ```javascript
+    [1, 2, 3].map((number) => {
+        const nextNumber = number + 1;
+        return `A string containing the ${nextNumber}.`;
+    });
+    ```
 
 **[⬆ к оглавлению](#Оглавление)**
 
