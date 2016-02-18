@@ -1027,7 +1027,7 @@
     const CAT_INIT_NUMBER_OF_LIVES = 9;
     ```
 
-- [15.6](#15.6) <a name='15.6'></a> В `ES6` можно не сохранять ссылку на `this`. Используйте стрелочные функции или `Function#bind`.
+- [15.6](#15.6) <a name='15.6'></a> В `ES6` можно не сохранять ссылку на `this`. Используйте стрелочные функции или `Function#bind`. Жить не можете без ссылки на `this`? Используйте тогда `_this`. 
 
     jscs: [`disallowNodeTypes`](http://jscs.info/rule/disallowNodeTypes)
 
