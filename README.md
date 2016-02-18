@@ -267,12 +267,6 @@
     }
 
     // good
-    function getFullName(user) {
-      const { firstName, lastName } = user;
-      return `${firstName} ${lastName}`;
-    }
-
-    // best
     function getFullName({ firstName, lastName }) {
       return `${firstName} ${lastName}`;
     }
@@ -295,9 +289,9 @@
     const [first, second, , fourth] = arr;
     ```
 
-- [4.3](#4.3) <a name='4.3'></a> Множество значений возвращайте в виде объекта, чтобы потом использовать деструктуризацию объекта. Это удобней чем массивы.
+- [4.3](#4.3) <a name='4.3'></a> Множество значений возвращайте в виде объекта, чтобы потом использовать деструктуризацию объекта. Это удобней чем массив.
 
-    > Со временем можно добавлять новые переменные не ломая места где вызывается и используется функция.
+    > Со временем можно добавлять и возвращать новые переменные не боясь поломать места вызова и использования функции.
 
     ```javascript
     // bad
@@ -359,7 +353,7 @@
     eslint: [`prefer-template`](http://eslint.org/docs/rules/prefer-template.html) jscs: [`requireTemplateStrings`](http://jscs.info/rule/requireTemplateStrings)
 
 
-    > Шаблоны более читаем, имеют лаконичный синтаксис, могут быть многострочными и могут интерполироваться.
+    > Шаблоны более читаемы, имеют лаконичный синтаксис, могут быть многострочными и могут интерполироваться. Что нам еще нужно?
 
     ```javascript
     // bad
@@ -378,8 +372,8 @@
     }
 
     // bad
-    const errorMessage = 'This is a super long error that was thrown because\n' +
-      'of Batman. When you stop to think about how Batman had anything to do\n' +
+    const errorMessage = 'This is a super long error that was thrown because \n' +
+      'of Batman. When you stop to think about how Batman had anything to do \n' +
       'with this, you would get nowhere fast.';
 
     // good
@@ -392,7 +386,7 @@
 
 ## Функции
 
-- [6.1](#6.1) <a name='6.1'></a> Старайтесь объявлять именованные функции вместо объявления анонимной функции (функционального литерала).
+- [6.1](#6.1) <a name='6.1'></a> Старайтесь объявлять именованные функции вместо анонимных (функционального литерала).
 
     jscs: [`requireFunctionDeclarations`](http://jscs.info/rule/requireFunctionDeclarations)
 
