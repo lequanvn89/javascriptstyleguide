@@ -661,7 +661,7 @@
 
 ## Комментарии
 
-- [11.1](#11.1) <a name='11.1'></a> Используйте `/** ... */` для многострочных комментариев.
+- [11.1](#11.1) <a name='11.1'></a> Используйте `/* ... */` для многострочных комментариев. Для `jsdoc` используйте `/** ... */`.
 
     ```javascript
     // bad
@@ -678,6 +678,18 @@
     }
 
     // good
+    /*
+     * make() returns a new element
+     * based on the passed in tag name
+     */
+    function make(tag) {
+
+      // ...stuff...
+
+      return element;
+    }
+
+    // jsdoc format
     /**
      * make() returns a new element
      * based on the passed in tag name
