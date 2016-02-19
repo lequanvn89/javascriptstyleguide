@@ -265,7 +265,7 @@
     }
 
     // good
-    function getFullName({ firstName, lastName }) {
+    function getFullName({firstName, lastName}) {
         return `${firstName} ${lastName}`;
     }
     ```
@@ -305,11 +305,11 @@
     // good
     function processInput(input) {
         // calculating...
-        return { left, right, top, bottom };
+        return {left, right, top, bottom};
     }
 
     // the caller selects only the data they need
-    const { left, right } = processInput(input);
+    const {left, right} = processInput(input);
     ```
 
 **[⬆ к оглавлению](#Оглавление)**
@@ -827,7 +827,7 @@
     const foo = 'Whatever national crop flips the window. The cartoon reverts within the screw. Whatever wizard constrains a helpful ally. The counterpart ascends!';
 
     // bad
-    $.ajax({ method: 'POST', url: 'https://airbnb.com/', data: { name: 'John' } }).done(() => console.log('Congratulations!')).fail(() => console.log('You have failed this city.'));
+    $.ajax({method: 'POST', url: 'https://airbnb.com/', data: {name: 'John'}}).done(() => console.log('Congratulations!')).fail(() => console.log('You have failed this city.'));
 
     // good
     const foo = 'Whatever national crop flips the window. The cartoon reverts within the screw. ' +
@@ -837,7 +837,7 @@
     $.ajax({
         method: 'POST',
         url: 'https://airbnb.com/',
-        data: { name: 'John' },
+        data: {name: 'John'},
     })
         .done(() => console.log('Congratulations!'))
         .fail(() => console.log('You have failed this city.'));
