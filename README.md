@@ -286,6 +286,22 @@
 
     // good
     const [first, second, , fourth, ...rest] = arr;
+    
+    // bad
+    function sum(arr) {
+        let foo = arr[0];
+        let bar = arr[1];
+        let foobar = foo + bar;
+        return foobar;
+    }
+    sum([1, 2]);
+    
+    // good
+    function sum([foo, bar]) {
+        let foobar = foo + bar;
+        return foobar;
+    }
+    sum([1, 2]);
     ```
 
 - [4.3](#4.3) <a name='4.3'></a> Множество значений возвращайте в виде объекта, чтобы потом использовать деструктуризацию объекта. Это удобней чем возвращать массив.
